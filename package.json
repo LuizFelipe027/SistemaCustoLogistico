@@ -16,8 +16,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.16",
+    "@babel/core": "^7.19.1",
+    "@babel/preset-env": "^7.19.1",
     "@uirouter/angularjs": "^1.0.28",
     "admin-lte": "^2.3.11",
     "angular": "^1.8.2",

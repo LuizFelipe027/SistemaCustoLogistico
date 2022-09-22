@@ -1,0 +1,27 @@
+
+============================================================================================
+
+Sistem Single Page
+O angular carrega tudo em uma unica pagina e depois e tudo controlado pelo ajax do angular.
+
+
+============================================================================================
+
+nvm-windows- Versionamento de node 
+https://github.com/coreybutler/nvm-windows/releases
+No link fazer o download do nvm-setup.zip, extrair e executar o arquivo
+-nvm --version
+-nvm install vNUMERODAVERSAO
+Tutorial: https://www.youtube.com/watch?v=Zrq8reSxfUU&ab_channel=Al%C3%A9mdoC%C3%B3digo
+
+============================================================================================
+
+
+ERROS: 
+Error: File not found with singular glob: D:/SistemaCustoLogistico/node_modules/xlsx/dist/xlsx.full.min.js (if this was purposeful, use `allowEmpty` option)
+Correção: Foi adicionado o gulp.scr(['/caminho/'], { allowEmpty: true })
+
+
+Cannot find package 'babel-preset-env'
+Correção: dentro de 'app.js' corrigido a linha .pipe(babel({ "presets": ["@babel/env"] }))
+

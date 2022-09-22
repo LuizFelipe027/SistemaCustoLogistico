@@ -1,21 +1,33 @@
-//Responsavel para startar o servidor 
-
 const gulp = require('gulp')
-//const watch = require('gulp-watch')
+const watch = require('gulp-watch')
+const webserver = require('gulp-webserver')
+const app = require('./app')
 
+gulp.task('debug',gulp.series(watchFiles))
+gulp.task('server',gulp.series(initService))
 
-gulp.task('server', gulp.series(watch))
+function watchFiles() {
+  gulp.watch('app/**/*.html', gulp.series(app.appHtml))
+  gulp.watch('app/**/*.css', gulp.series(app.appCss))
+  gulp.watch('app/**/*.js', gulp.series(app.appJs))
+  gulp.watch('assets/**/*.*', gulp.series(app.appAssets))
+  //initServiceDebug()
+}
 
+function initServiceDebug() {
+  return gulp.src('public').pipe(webserver({
+    livereload: true,
+    port: 3011,
+    open: true
+    //host: '0.0.0.0'
+  }))
+}
 
-    function watch() {
-        return console.log('ok')
-      }
-
-//monitora todos os arquivos da aplicacao e se preciso regenera-los
-// gulp.task('watch', () => {
-
-// })
-
-// gulp.task('server', ['watch'], () => {
-    
-// })
+function initService() {
+  return gulp.src('public').pipe(webserver({
+    livereload: true,
+    port: 3000,
+    open: true
+    //host: '0.0.0.0'
+  }))
+}
