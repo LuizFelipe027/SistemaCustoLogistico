@@ -1,5 +1,8 @@
 angular.module('sistemaCustoLogistico', [
     'ui.router',
     'ngAnimate',
-    'toastr'
-])
+    'toastr',
+    'ui.utils.masks',
+    'chart.js'
+  ])
+  

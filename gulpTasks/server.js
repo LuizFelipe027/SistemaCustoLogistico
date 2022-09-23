@@ -11,14 +11,14 @@ function watchFiles() {
   gulp.watch('app/**/*.css', gulp.series(app.appCss))
   gulp.watch('app/**/*.js', gulp.series(app.appJs))
   gulp.watch('assets/**/*.*', gulp.series(app.appAssets))
-  //initServiceDebug()
+  initServiceDebug()
 }
 
 function initServiceDebug() {
   return gulp.src('public').pipe(webserver({
     livereload: true,
     port: 3011,
-    open: true
+    open: true,
     //host: '0.0.0.0'
   }))
 }
@@ -27,7 +27,7 @@ function initService() {
   return gulp.src('public').pipe(webserver({
     livereload: true,
     port: 3000,
-    open: true
+    open: true,
     //host: '0.0.0.0'
   }))
 }

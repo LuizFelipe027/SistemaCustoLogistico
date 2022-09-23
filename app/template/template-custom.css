@@ -1,5 +1,48 @@
+html {
+  background-color: #ecf0f5;
+  zoom: 60%;
+}
+
 .main-footer {
-    position: fixed;
-    bottom: 0%;
-    width: 100%;
+  position: fixed;
+  bottom:0px;
+  width:100%;
+}
+
+#toast-container {
+  top:20px;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+  vertical-align: middle;
+}
+
+.table-item {
+  max-height:420px;
+  overflow-y:auto;
+}
+
+.table-detail {
+  max-height:430px;
+  overflow-y:auto;
+}
+
+.table-item th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fff;
+  box-shadow: 0 1px 0 0 #ddd, 0 -5px 0 0 #fff;
+}
+
+.table-item tr {
+  background: #fff;
+}
+
+.table-item tr.true {
+  background: #efeff5;
+}
+
+.table-item tr.false {
+  background: #fff;
 }

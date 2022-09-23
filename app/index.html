@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="pt-br" ng-app="sistemaCustoLogistico">
-<head>
-    <meta charset="UTF-8">
+<html ng-app="sistemaCustoLogistico" style="height: auto; min-height: 100%;">
+  <head>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/assets/css/deps.min.css">
-    <link rel="stylesheet" href="/public/assets/css/app.min.css">
     <title>Sistema</title>
-</head>
-<body class="skin-blue fixed sidebar-mini">
-    <div class="wrapper">
-        <header class="main-header" ng-include="'/app/template/header.html'"></header>
-        <aside class="main-sidebar" ng-include="'/app/template/menu.html'"></aside>
-        <div class="content-wrapper" ui-view></div>
-        <footer class="main-footer" ng-include="'/app/template/footer.html'"></footer>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/assets/css/deps.min.css">
+    <link rel="stylesheet" href="/assets/css/app.min.css">
+    <link rel="icon" href="/assets/imgs/favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="/assets/imgs/favicon.ico" type="image/x-icon"/>
+  </head>
+  <body class="skin-blue fixed sidebar-mini" style="height: auto; min-height: 100%;">
+    <div class="wrapper" style="height: auto; min-height: 100%; vertical-align: middle;">
+      <header class="main-header" ng-include="'/template/header/header.html'"></header>
+      <aside class="main-sidebar" ng-include="'/template/menu/menu.html'"></aside>
+      <div class="content-wrapper" ui-view></div>
+      <footer class="main-footer" ng-include="'/template/footer/footer.html'"></footer>
     </div>
     <script src="/assets/js/deps.min.js"></script>
     <script src="/assets/js/app.min.js"></script>
-</body>
+  </body>
 </html>
