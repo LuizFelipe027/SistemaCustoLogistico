@@ -1,8 +1,9 @@
 <section class="sidebar">
-	<div ng-controller="MenuCtrl">
+	<!-- <div ng-controller="MenuCtrl"> -->
 		<ul class="sidebar-menu" data-widget="tree">
 			<li class="header">MENU PRINCIPAL</li>
-			<li ng-if="menuDashboard">
+			<!-- <li ng-if="menuDashboard"> -->
+			<li>	
 				<a ui-sref="dashboard"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
 			</li>
 			 
@@ -14,16 +15,17 @@
 			</li>
 			
 			<li class="treeview">
-				<a href="#"><i class="fa fa-edit"></i> <span>Cadastros</span>
-			    <span class="pull-right-container">
-			       <i class="fa fa-angle-left pull-right"></i>
-			    </span>
+				<a href>
+					<i class="fa fa-edit"></i> <span>Cadastros</span>
+			        <i class="fa fa-angle-left pull-right"></i>
 			  </a>
-			  <ul class="treeview-menu" style="display: block;">
-					<li ng-if="menuUsuario"><a ui-sref="usuario"><i class="fa fa-user"></i> Usuários</a></li>
-					<li><a ui-sref="usuario"><i class="fa fa-user"></i> Usuários</a></li>
+			  <ul class="treeview-menu">
+					<!-- <li ng-if="menuUsuario"><a ui-sref="usuario"><i class="fa fa-user"></i> Usuários</a></li> -->
+					<li>
+						<a ui-sref="usuario"><i class="fa fa-user"></i> Usuários</a>
+					</li>
 			  </ul>
 			</li>
 		</ul>
-	<div>
+	<!-- <div> -->
 </section>
