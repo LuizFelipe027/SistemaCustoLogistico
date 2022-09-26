@@ -1,1 +1,115 @@
-<h1>dashboard</h1>
+<content-header name="Dashboard"></content-header>
+<section class="content">
+    <div class="row" ng-controller="DashboardCtrl">
+        <div class="col-xs-12">
+            <!-- <div ng-if="(!tabSearch && !tabLoading)" ng-class="{active: (!tabSearch && !tabLoading)}"> -->
+                <div class="row">
+                    <div class="col-lg-4 col-xs-6">
+                        <div class="small-box" style="background-color:#ffffff;border-radius: 5px;">
+                            <div class="inner">
+                                <h3 style="color:#999999;">{{:: }}</h3>
+                                <p style="color:#404040;">Entregas</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-building"></i>
+                            </div>
+                            <br>
+                            <a href="/#!/empresa" class="small-box-footer" style="border-radius: 5px;">Mais informações <i
+                                    class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-xs-6">
+                        <div class="small-box" style="background-color:#ffffff;border-radius: 5px;">
+                            <div class="inner">
+                                <h3 style="color:#999999;">{{:: }}</h3>
+                                <p style="color:#404040;">Entregas Boas</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-cubes"></i>
+                            </div>
+                            <br>
+                            <a href="/#!/produto" class="small-box-footer" style="border-radius: 5px;">Mais informações <i
+                                    class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-xs-6">
+                        <div class="small-box" style="background-color:#ffffff;border-radius: 5px;">
+                            <div class="inner">
+                                <h3 style="color:#999999;">{{:: }}</h3>
+                                <p style="color:#404040;">Entragas Ruins</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-tags"></i>
+                            </div>
+                            <br>
+                            <a href="/#!/produtoempresa" class="small-box-footer" style="border-radius: 5px;">Mais
+                                informações <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-xs-12">
+                        <div class="small-box" style="background-color:#ffffff;border-radius: 5px;">
+                            <div class="inner">
+                                <h3 style="color:#6699cc;">R$ {{ | number: 2 }}</h3>
+                                <p style="color:#404040;">Lucro</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa fa-shopping-cart"></i>
+                            </div>
+                            <a href="/#!/compra/sugestao" class="small-box-footer" style="border-radius: 5px;">Mais
+                                informações <i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            <!-- </div> -->
+
+            <div class="row">
+                <content-header name="Distribuição de Curvas"></content-header>
+                <br>
+
+                <div class="col-lg-6 col-xs-12">
+                    <div class="small-box" style="background-color:#ffffff;border-radius: 5px;">
+                        <div class="inner">
+                            <canvas id="line" class="chart chart-bar" chart-data="curvas.data1"
+                                chart-labels="curvas.labels"></canvas>
+                            <p style="color:#404040;">Satisfação</p>
+                        </div>
+                        <a href="/#!/produtoempresa" class="small-box-footer" style="border-radius: 5px;">Mais informações
+                            <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-xs-12">
+                    <div class="small-box" style="background-color:#ffffff;border-radius: 5px;">
+                        <div class="inner">
+                            <canvas id="line" class="chart chart-bar" chart-data="curvas.data2"
+                                chart-labels="curvas.labels"></canvas>
+                            <p style="color:#404040;">Não sei ainda</p>
+                        </div>
+                        <a href="/#!/produtoempresa" class="small-box-footer" style="border-radius: 5px;">Mais informações
+                            <i class="fa fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+            <br>
+
+            </div>
+        </div>
+
+        <div class="tab-content">
+            <div class="box">
+                <div class="tab-pane" id="tabSearch" ng-if="tabSearch" ng-class="{active: tabSearch}"
+                    ng-include="typeSearch+'/'+'searchlist.html'">
+                </div>
+                <div class="tab-pane" id="tabLoading" ng-if="tabLoading" ng-class="{active: tabLoading}"
+                    ng-include="'template/loading/loading.html'">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

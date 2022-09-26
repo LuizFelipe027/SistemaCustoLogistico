@@ -1,1 +1,112 @@
-<h1>Usuario</h1>
+<content-header name="Usuários" small="Cadastros"></content-header>
+<section class="content">
+  <div class="row" ng-controller="UsuarioCtrl">
+    <div class="col-xs-12">
+      <div class="box">
+        <div ng-if="tabList" ng-class="{active: tabList}">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="input-group input-group-sm margin pull-left">
+                <input type="text" class="form-control" ng-model="filter" ng-enter="filterBrowse(filter)">
+                <span class="input-group-btn">
+                  <button class="btn btn-info btn-flat btn-sm" ng-click="filterBrowse(filter)">Buscar!</button>
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="input-group margin pull-right">
+                <button class="btn btn-default btn-sm" ng-click="showPrevPag()"><i class="fa fa-backward"></i></button>
+                {{ page }}
+                <button class="btn btn-default btn-sm" ng-click="showNextPag()"><i class="fa fa-forward"></i></button>
+              </div>
+              <div class="input-group margin pull-right">
+                <button class="btn btn-success btn-sm" ng-click="showTabCreate()"><i class="fa fa-plus"></i> Incluir</button>
+              </div>
+              <div class="input-group margin pull-right">
+                <button class="btn btn-default btn-sm" ng-click="showTabExport()"><i class="fa fa-file-excel-o"></i> Exportar</button>
+              </div>
+            </div>
+          </div>
+          <div class="box-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="table-responsive">
+                  <table class="table table-condensed table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th style="text-align:center">Status</th>
+                        <th style="text-align:center">Ultimo Acesso</th>
+                        <th style="text-align:center">Ultima Atualização</th>
+                        <th>Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="usuario in usuarios" ng-dblclick="showTabUpdate(usuario)">
+                        <td>{{:: usuario.nome }}</td>
+                        <td>{{:: usuario.email }}</td>
+                        <td style="text-align:center"><small class="label bg-{{:: cbStatus[buscaIndex(cbStatus,usuario.status)].cor }}">{{:: cbStatus[buscaIndex(cbStatus,usuario.status)].nome }}</small></td>
+                        <td style="text-align:center">{{:: formatDateTime(usuario.ultimoAcesso) }}</td>
+                        <td style="text-align:center">{{:: formatDateTime(usuario.ultimaAtualizacao) }}</td>
+                        <td style="width:125px;">
+                          <button title="Visualizar" class="btn btn-info btn-sm" ng-click="showTabView(usuario)"><i class="fa fa-eye"></i></button>
+                          <button title="Alterar" class="btn btn-warning btn-sm" ng-click="showTabUpdate(usuario)"><i class="fa fa-pencil"></i></button>
+                          <button title="Excluir" class="btn btn-danger btn-sm" ng-click="showTabDelete(usuario)"><i class="fa fa-trash-o"></i></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-content">
+          <div class="tab-pane"
+              id="tabView"
+              ng-if="(tabView && !tabSearch && !tabLoading)"
+              ng-class="{active: tabView}"
+              ng-include="'usuario/form.html'">
+          </div>
+          <div class="tab-pane"
+              id="tabExport"
+              ng-if="(tabExport && !tabSearch && !tabLoading)"
+              ng-class="{active: tabExport}"
+              ng-include="'usuario/form.html'">
+          </div>
+          <div class="tab-pane"
+              id="tabCreate"
+              ng-if="(tabCreate && !tabSearch && !tabLoading)"
+              ng-class="{active: tabCreate}"
+              ng-include="'usuario/form.html'">
+          </div>
+          <div class="tab-pane"
+              id="tabUpdate"
+              ng-if="(tabUpdate && !tabSearch && !tabLoading)"
+              ng-class="{active: tabUpdate}"
+              ng-include="'usuario/form.html'">
+          </div>
+          <div class="tab-pane"
+              id="tabDelete"
+              ng-if="(tabDelete && !tabSearch && !tabLoading)"
+              ng-class="{active: tabDelete}"
+              ng-include="'usuario/form.html'">
+          </div>
+          <div class="tab-pane"
+              id="tabSearch"
+              ng-if="tabSearch"
+              ng-class="{active: tabSearch}"
+              ng-include="typeSearch+'/'+'searchlist.html'">
+          </div>
+          <div class="tab-pane"
+              id="tabLoading"
+              ng-if="tabLoading"
+              ng-class="{active: tabLoading}"
+              ng-include="'template/loading/loading.html'">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,112 @@
+<div role="form">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="input-group margin pull-right">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="margin pull-right">
+          <button class="btn btn-info btn-sm" ng-click="search('usuariosuperior')"
+            ng-if="tabCreate||tabUpdate">Superior</button>
+          <button class="btn btn-info btn-sm" ng-click="verificaoEmail()"
+            ng-if="tabCreate||tabUpdate">Verif.Email</button>
+          <button class="btn btn-info btn-sm" ng-click="search('usuario')"
+            ng-if="tabCreate||tabUpdate">Copiar</button>
+          <button class="btn btn-info btn-sm" ng-click="allAcesso()"
+            ng-if="tabCreate||tabUpdate">Todos Acessos</button>
+          <button class="btn btn-success btn-sm" ng-click="exportUsuario()"
+            ng-if="tabExport">Exportar</button>
+          <button class="btn btn-success btn-sm" ng-click="createUsuario()"
+            ng-if="tabCreate">Incluir</button>
+           <button class="btn btn-warning btn-sm" ng-click="updateUsuario()"
+            ng-if="tabUpdate">Alterar</button>
+           <button class="btn btn-danger btn-sm" ng-click="deleteUsuario()"
+            ng-if="tabDelete">Excluir</button>
+          <button class="btn btn-default btn-sm" ng-click="cancel()">Cancelar</button>
+        </div>
+      </div>
+    </div>
+    <div class="nav-tabs-custom">
+      <ul class="nav nav-tabs">
+        <li ng-class="{active: true}">
+          <a href data-target="#tabDados" data-toggle="tab">
+            <i class="fa fa-bars"></i> Dados
+          </a>
+        </li>
+        <li>
+          <a href data-target="#tabAvatar" data-toggle="tab">
+            <i class="fa fa-image"></i> Avatar
+          </a>
+        </li>
+        <li>
+          <a href data-target="#tabAcesso" data-toggle="tab">
+            <i class="fa fa-folder-open-o"></i> Acessos
+          </a>
+        </li>
+        <li>
+          <a href data-target="#tabGrupoEconomico" data-toggle="tab">
+            <i class="fa fa-umbrella"></i> Grupos Econômicos
+          </a>
+        </li>
+        <li>
+          <a href data-target="#tabEmpresa" data-toggle="tab">
+            <i class="fa fa-building"></i> Empresas
+          </a>
+        </li>
+        <!-- <li>
+          <a href data-target="#tabEmail" data-toggle="tab">
+            <i class="fa fa-envelope-o"></i> Email
+          </a>
+        </li> -->
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane" id="tabDados"  ng-class="{active: true}">
+          <div class="box-body">
+            <div class="row">
+              <field id="usuarioNome" label="Nome" model="usuario.nome" grid="12 6 6" readonly="tabView||tabDelete"></field>
+              <field id="usuarioEmail" label="Email" model="usuario.email" grid="12 6 6" readonly="tabView||tabUpdate||tabDelete"></field>
+              <field id="usuarioPassword" label="Senha" model="usuario.password" grid="12 6 6" type="password" readonly="tabView||tabDelete"></field>
+              <field id="usuarioConfirmPassword" label="Confirmar Senha" model="usuario.confirm_password" grid="12 6 6" type="password" readonly="tabView||tabDelete"></field>
+              <field id="usuarioUsuarioSuperior" label="Superior" model="usuario.usuariosuperior.nome" grid="12 6 6" readonly="true"></field>
+              <combobox id="usuarioStatus" label="Status" model="usuario.status" grid="12 6 6" readonly="tabView||tabDelete" options="cbStatus"></combobox>
+              <combobox id="usuarioItensPagina" label="Itens P/ Página" model="usuario.itensPagina" grid="12 6 6" readonly="tabView||tabDelete" options="cbItensPagina"></combobox>
+              <combobox id="usuarioFollowUp" label="Recebe Follow-Up" model="usuario.followUp" grid="12 6 6" readonly="tabView||tabDelete" options="cbFollowUp" ></combobox> 
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tabAvatar">
+          <div class="box-body">
+            <div class="row">
+              <img ng-if="usuario.avatar" src="{{ usuario.avatar }}" class="img-square" alt="User Image">
+              <img ng-if="!usuario.avatar" src="/assets/imgs/user.jpg" class="img-square" alt="User Image">
+              <div class="form-control pl-0" style="border: 0px solid">
+                <field id="usuarioAvatar" label="Avatar" grid="12 6 4" type="file" custom-on-change="importAvatar" readonly="tabView||tabDelete"></field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tabAcesso">
+          <div class="box-body">
+            <div class="row">
+              <div ng-include="'usuario/listAcesso.html'"></div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tabGrupoEconomico">
+          <div class="box-body">
+            <div class="row">
+              <div ng-include="'usuario/listGrupoEconomico.html'"></div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tabEmpresa">
+          <div class="box-body">
+            <div class="row">
+              <div ng-include="'usuario/listEmpresa.html'"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
