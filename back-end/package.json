@@ -1,0 +1,42 @@
+{
+  "name": "conecta-supply",
+  "version": "1.0.0",
+  "description": "",
+  "main": "loader.js",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon",
+    "sandbox": "NODE_ENV=sandbox nodemon",
+    "production": "NODE_ENV=production pm2 start loader.js -i 20 --name conecta-supply-back"
+  },
+  "author": "Conecta Tech",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.88.0",
+    "aws-sdk": "^2.1133.0",
+    "axios": "^0.27.2",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "crypto-js": "^4.0.0",
+    "ejs": "^3.1.8",
+    "exceljs": "^4.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^6.0.6",
+    "express-query-int": "^3.0.0",
+    "html-pdf-node": "^1.0.8",
+    "html-to-pdf": "^0.1.11",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.20",
+    "moment": "^2.29.3",
+    "mssql": "^9.0.1",
+    "mysql2": "^2.3.3",
+    "node-fetch": "^2.6.1",
+    "node-restful": "^0.2.6",
+    "nodemailer": "^6.5.0",
+    "pm2": "^4.5.0",
+    "sequelize": "^6.23.2",
+    "tedious": "^15.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
