@@ -1,23 +1,19 @@
 {
-  "name": "sistemacustologistico",
+  "name": "sistemaCustoLogistico",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "gulp",
-    "production": "gulp --production"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/LuizFelipe027/SistemaCustoLogistico.git"
+    "dev": "NODE_ENV=development gulp",
+    "sandbox": "NODE_ENV=sandbox gulp",
+    "production": "NODE_ENV=production pm2 start node_modules/gulp/bin/gulp.js --name conecta-supply-front"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.19.1",
-    "@babel/preset-env": "^7.19.1",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.16",
     "@uirouter/angularjs": "^1.0.28",
     "admin-lte": "^2.3.11",
     "angular": "^1.8.2",
@@ -38,13 +34,8 @@
     "gulp-uglifycss": "^1.1.0",
     "gulp-watch": "^5.0.1",
     "gulp-webserver": "^0.9.1",
-    "gulp4-run-sequence": "^1.0.1"
-  },
-  "bugs": {
-    "url": "https://github.com/LuizFelipe027/SistemaCustoLogistico/issues"
-  },
-  "homepage": "https://github.com/LuizFelipe027/SistemaCustoLogistico#readme",
-  "dependencies": {
-    "gulp-update": "^0.0.2"
+    "gulp4-run-sequence": "^1.0.1",
+    "popper.js": "^1.16.1",
+    "xlsx": "^0.16.9"
   }
 }

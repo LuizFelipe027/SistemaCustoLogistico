@@ -1,9 +1,9 @@
 <content-header name="Usuários" small="Cadastros"></content-header>
 <section class="content">
-  <div class="row" ng-controller="UsuarioCtrl">
+  <div class="row" ng-controller="UsuarioCtrl as crtl">
     <div class="col-xs-12">
       <div class="box">
-        <div ng-if="tabList" ng-class="{active: tabList}">
+        <!-- <div ng-if="tabList" ng-class="{active: tabList}"> -->
           <div class="row">
             <div class="col-sm-6">
               <div class="input-group input-group-sm margin pull-left">
@@ -20,10 +20,7 @@
                 <button class="btn btn-default btn-sm" ng-click="showNextPag()"><i class="fa fa-forward"></i></button>
               </div>
               <div class="input-group margin pull-right">
-                <button class="btn btn-success btn-sm" ng-click="showTabCreate()"><i class="fa fa-plus"></i> Incluir</button>
-              </div>
-              <div class="input-group margin pull-right">
-                <button class="btn btn-default btn-sm" ng-click="showTabExport()"><i class="fa fa-file-excel-o"></i> Exportar</button>
+                <button class="btn btn-success btn-sm" ng-click="crtl.showTabCreate()"><i class="fa fa-plus"></i> Incluir</button>
               </div>
             </div>
           </div>
@@ -36,7 +33,6 @@
                       <tr>
                         <th>Nome</th>
                         <th>Email</th>
-                        <th style="text-align:center">Status</th>
                         <th style="text-align:center">Ultimo Acesso</th>
                         <th style="text-align:center">Ultima Atualização</th>
                         <th>Ações</th>
@@ -46,7 +42,6 @@
                       <tr ng-repeat="usuario in usuarios" ng-dblclick="showTabUpdate(usuario)">
                         <td>{{:: usuario.nome }}</td>
                         <td>{{:: usuario.email }}</td>
-                        <td style="text-align:center"><small class="label bg-{{:: cbStatus[buscaIndex(cbStatus,usuario.status)].cor }}">{{:: cbStatus[buscaIndex(cbStatus,usuario.status)].nome }}</small></td>
                         <td style="text-align:center">{{:: formatDateTime(usuario.ultimoAcesso) }}</td>
                         <td style="text-align:center">{{:: formatDateTime(usuario.ultimaAtualizacao) }}</td>
                         <td style="width:125px;">
@@ -67,12 +62,6 @@
               id="tabView"
               ng-if="(tabView && !tabSearch && !tabLoading)"
               ng-class="{active: tabView}"
-              ng-include="'usuario/form.html'">
-          </div>
-          <div class="tab-pane"
-              id="tabExport"
-              ng-if="(tabExport && !tabSearch && !tabLoading)"
-              ng-class="{active: tabExport}"
               ng-include="'usuario/form.html'">
           </div>
           <div class="tab-pane"
@@ -108,5 +97,5 @@
         </div>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </section>

@@ -16,18 +16,19 @@ function watchFiles() {
 
 function initServiceDebug() {
   return gulp.src('public').pipe(webserver({
+    // livereload: {
+    //   port: 35730
+    // },
     livereload: true,
-    port: 3011,
-    open: true,
-    //host: '0.0.0.0'
+    port: 3002,
+    host: '0.0.0.0'
   }))
 }
 
 function initService() {
   return gulp.src('public').pipe(webserver({
-    livereload: true,
+    livereload: false,
     port: 3000,
-    open: true,
-    //host: '0.0.0.0'
+    host: '0.0.0.0' 
   }))
 }

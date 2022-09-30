@@ -20,7 +20,7 @@ function depsJs() {
     'node_modules/chart.js/dist/Chart.min.js',
     'node_modules/angular-chart.js/dist/angular-chart.min.js',
     'node_modules/xlsx/dist/xlsx.full.min.js'
-  ], { allowEmpty: true })
+  ])
   .pipe(terser())
   .pipe(concat('deps.min.js'))
   .pipe(gulp.dest('public/assets/js'))
@@ -35,7 +35,7 @@ function depsCss() {
     'node_modules/admin-lte/dist/css/AdminLTE.min.css',
     'node_modules/admin-lte/dist/css/skins/_all-skins.min.css',
     'node_modules/chart.js/dist/Chart.min.css'
-  ], { allowEmpty: true })
+  ])
   .pipe(uglifycss({ "uglyComments": true }))
   .pipe(concat('deps.min.css'))
   .pipe(gulp.dest('public/assets/css'))
@@ -45,6 +45,6 @@ function depsFonts() {
   return gulp.src([
     'node_modules/font-awesome/fonts/*.*',
     'node_modules/admin-lte/bower_components/bootstrap/fonts/*.*'
-  ], { allowEmpty: true })
+  ])
   .pipe(gulp.dest('public/assets/fonts'))
 }

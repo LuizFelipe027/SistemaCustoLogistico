@@ -1,8 +1,6 @@
-//Ler todo o código da aplicação
-
 const gulp = require('gulp')
 const babel = require('gulp-babel')
-const uglify = require('gulp-uglify')
+//const uglify = require('gulp-uglify')
 const terser = require('gulp-terser')
 const uglifycss = require('gulp-uglifycss')
 const concat = require('gulp-concat')

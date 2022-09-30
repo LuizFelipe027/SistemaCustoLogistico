@@ -16,7 +16,7 @@
   
       $scope.page = 1
       $scope.filter = ''
-      $scope.cbAtivo = consts.cbSimNao
+      //$scope.cbAtivo = consts.cbSimNao
   
       $scope.cbStatus = [ {codigo:'ativo',nome:'Ativo',cor:"green"},
                           {codigo:'inativo',nome:'Inativo',cor:"red"}]
@@ -25,41 +25,6 @@
                                 {codigo:'50', nome:'50 Itens'},
                                 {codigo:'75', nome:'75 Itens'},
                                 {codigo:'100', nome:'100 Itens'}]
-  
-      $scope.cbRotina = [ {codigo:'dashboard', nome: 'Dashboard'},
-                          {codigo:'cockpit', nome: 'Cockpit'},
-                          {codigo:'integracao', nome: 'Integração'},
-                          {codigo:'automacao', nome: 'Automação'},
-                          {codigo:'grupoeconomico', nome: 'Grupo econômico'},
-                          {codigo:'usuario', nome: 'Usuário'},
-                          {codigo:'empresa', nome: 'Empresa'},
-                          {codigo:'parametro', nome: 'Parâmetro'},
-                          {codigo:'condicaopagamento',nome:'Condição de Pagamento'},
-                          {codigo:'operacao',nome:'Operação'},
-                          {codigo:'comprador', nome: 'Comprador'},
-                          {codigo:'fornecedor', nome: 'Fornecedor'},
-                          {codigo:'transportadora', nome: 'Transportadora'},
-                          {codigo:'familia', nome: 'Família'},
-                          {codigo:'grupo', nome: 'Grupo'},
-                          {codigo:'agrupador', nome: 'Agrupador'},
-                          {codigo:'marca', nome: 'Marca'},
-                          {codigo:'produto', nome: 'Produto'},
-                          {codigo:'produtoempresa', nome: 'Produto x Empresa'},
-                          {codigo:'produtofornecedor', nome: 'Produto x Fornecedor'},
-                          {codigo:'codigorepositor', nome: 'Código Repositor'},
-                          {codigo:'demanda', nome: 'Demanda'},
-                          {codigo:'compra', nome: 'Compra'},
-                          {codigo:'cotacao', nome: 'Cotação'},
-                          {codigo:'oportunidade', nome: 'Oportunidade'},
-                          {codigo:'reposicao', nome: 'Reposição'},
-                          {codigo:'saida', nome: 'Saida'},
-                        ]
-  
-      $scope.cbFollowUp = [
-                            {codigo: 'geral', nome: 'Geral'},
-                            {codigo: 'comprador', nome: 'Comprador'},
-                            {codigo: 'nao', nome: 'Não'},
-                          ]
   
       $scope.buscaIndex = function(objeto,valor) {
         let id = objeto.map(function(e) { return e.codigo; })
@@ -101,10 +66,12 @@
       }
   
       $scope.getUsuarios = function() {
-        const page = $scope.page || 1
-        const limit = $scope.itensPagina
-        const skip = (page - 1) * limit
-        const url = `${urls.apiUrl}/usuario?skip=${skip}&limit=${limit}&filter=${$scope.filter}`
+        console.log('opa');
+        //const page = $scope.page || 1
+        //const limit = $scope.itensPagina
+        //const skip = (page - 1) * limit
+        // const url = `${urls.apiUrl}/usuario?skip=${skip}&limit=${limit}&filter=${$scope.filter}`
+        const url = `localhost:5000/usuario/List`
         $http.get(url).then(function(resp) {
           $scope.usuarios = resp.data
           $scope.usuario = {}
@@ -124,12 +91,9 @@
       }
   
       $scope.showTabCreate = function() {
-        if ($scope.acesso && $scope.acesso.create && $scope.acesso.create == 'sim') {
+        console.log('entrou');
           initUsuario()
           tabs.show($scope, {tabCreate: true})
-        } else {
-          msgs.addError('Usuário sem acesso a rotina!')
-        }
       }
   
       $scope.showTabUpdate = function(usuario) {
@@ -173,7 +137,8 @@
       }
   
       $scope.createUsuario = function() {
-        const url = `${urls.apiUrl}/usuario`;
+        //const url = `${urls.apiUrl}/usuario`;
+        const url = `localhost:5000/usuario/create`
         $http.post(url, $scope.usuario).then(function(response) {
           $scope.usuario = {}
           $scope.getUsuarios()
@@ -182,54 +147,7 @@
           msgs.addError(error)
         })
       }
-  
-      $scope.verificaoEmail = function() {
-        const url = `${urls.apiUrl}/usuario/verificaoemail`;
-        $http.post(url,$scope.usuario).then(function(resp) {
-          //atualiza o objeto do usuario
-          $scope.usuario = resp.data
-          //muda o tab updade
-          tabs.show($scope,{tabUpdate: true})
-          //caso não tenha codigoEmailVerificado, mostra erro
-          if ($scope.usuario.codigoEmailVerificado) {
-            //manda mensagem de ok
-            msgs.addSuccess('Operação realizada com sucesso!')
-          } else {
-            //manda mensagem de ok
-            msgs.addError('Erro ao verificar o Email!')
-          }
-        }).catch(function(error) {
-          msgs.addError(error)
-        })
-      }
-  
-      $scope.exportUsuario = function() {
-  
-        $scope.msgLoading = 'Exportando lista de Usuários'
-        $scope.tabLoading = true
-  
-        const url = `${urls.apiUrl}/usuario/export`;
-        $http.post(url, $scope.usuario).then(function(response) {
-  
-          var temp = 'data:application/vnd.ms-excel;base64,'+encodeURIComponent(response.data);
-          var download = document.createElement('a');
-          download.href = temp;
-          download.download = 'Usuários.xlsx';
-          document.body.appendChild(download);
-          download.click();
-          document.body.removeChild(download);
-  
-          $scope.tabLoading = false
-  
-          $scope.usuario = {}
-          $scope.getUsuarios()
-  
-        }).catch(function(error) {
-          $scope.tabLoading = false
-          msgs.addError(error)
-        })
-      }
-  
+
       $scope.updateUsuario = function() {
         const url = `${urls.apiUrl}/usuario/${$scope.usuario._id}`
         $http.put(url, $scope.usuario).then(function(response) {
@@ -254,68 +172,21 @@
         })
       }
   
-      var initUsuario = function(usuario) {
+      const initUsuario = function(usuario) {
   
         if (usuario) {
-          const url = `${urls.apiUrl}/usuario/id/${usuario._id}`
+          // const url = `${urls.apiUrl}/usuario/id/${usuario._id}`
+          const url = ''
+
           $http.get(url).then(function(resp) {
             $scope.usuario = resp.data
-            //inclui escopo dos acessos a lista
-            initAcessos()
-            initGruposEconomicos()
-            initEmpresas()
           }).catch(function(error) {
             msgs.addError(error)
           })
         } else {
           $scope.usuario = {}
-          initAcessos()
-          initGruposEconomicos()
-          initEmpresas()
         }
   
-      }
-  
-      $scope.addAcesso = function(index) {
-        $scope.usuario.acessos.splice(index + 1, 0, { ativo: 'sim',
-                                                      view: 'sim',
-                                                      create: 'sim',
-                                                      update: 'sim',
-                                                      delete: 'sim',
-                                                      import: 'sim',
-                                                      export: 'sim'})
-      }
-  
-      $scope.cloneAcesso = function(index,acesso) {
-        $scope.usuario.acessos.splice(index + 1, 0,{rotina: acesso.rotina,
-                                                    ativo: acesso.ativo,
-                                                    view: acesso.view,
-                                                    create: acesso.create,
-                                                    update: acesso.update,
-                                                    delete: acesso.delete,
-                                                    import: acesso.import,
-                                                    export: acesso.export})
-      }
-  
-      $scope.deleteAcesso = function(index) {
-        $scope.usuario.acessos.splice(index, 1)
-        initAcessos()
-      }
-  
-      $scope.allAcesso = function(index) {
-        delete $scope.usuario.acessos
-        initAcessos()
-      }
-  
-      var initAcessos = function() {
-        if(!$scope.usuario.acessos || !$scope.usuario.acessos.length) {
-          //inicia vetor
-          $scope.usuario.acessos = []
-          //inclui todos acessos
-          for (let rotina of $scope.cbRotina) {
-            $scope.usuario.acessos.push({rotina: rotina.codigo, ativo: 'sim', view: 'sim',create: 'sim',update: 'sim',delete: 'sim',import: 'sim',export: 'sim'})
-          }
-        }
       }
       
       $scope.importAvatar = function(event) {
@@ -387,12 +258,6 @@
         $scope.tabSearch = false
       }
   
-      $scope.getAcesso = function() {
-        $scope.acesso = auth.getAcesso('usuario')
-        $scope.itensPagina = auth.getItensPagina()
-      }
-  
-      $scope.getAcesso()
       $scope.getUsuarios()
   
     }
