@@ -5,6 +5,16 @@ const database = new sequelize('sistemaCustoLogistico', 'azureuser', 'databaseTC
                                                                                             port: 1433
                                                                                         }
 )
-database.sync()
+
+async function connect() {
+    try {
+       await database.sync()
+       console.log('DATABASE CONNECTED');
+    } catch (error) {
+        console.error('ERROR: ', error)
+    }
+}
+
+connect()
 
 module.exports = database
