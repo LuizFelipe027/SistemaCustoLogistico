@@ -12,20 +12,12 @@ module.exports = {
 
     async create(req, res){
         try {
-            console.log('entrou aqui ');
             const Usuarios = await usuarioModel.create({
                 ID: req.body.id,
                 NOME: req.body.nome,
                 SENHA: req.body.senha,
                 EMAIL: req.body.email
             })
-
-            // const Usuarios = await usuarioModel.create({
-            //     NOME: 'Luiz Felipe',
-            //     SENHA: 'testeteste',
-            //     EMAIL: 'luiz.paixao@teste.com'
-            // })
-            // console.log(Usuarios);
             return res.json(Usuarios)
         } catch (error) {
             return console.error("ERROR CREATE: ", error);
@@ -64,5 +56,5 @@ module.exports = {
         } catch (error) {
             return console.error("ERROR DELETE: ", error);
         }
-    },
+    }
 }

@@ -12,7 +12,7 @@ module.exports = {
 
     async create(req, res){
         try {
-            console.log('entrou aqui ');
+             
             const ItensAvariados = await ItensAvariadosModel.create({
                 NUMERO_NOTA: req.body.NUMERO_NOTA,
                 SE_AVARIADO: req.body.SE_AVARIADO,

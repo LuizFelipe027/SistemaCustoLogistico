@@ -61,6 +61,20 @@ const express = require('express')
     router.post('/prazos/update', prazosService.update)
     router.post('/prazos/delete', prazosService.delete)
 
+    const automacaoService = require('../api/automacao/automacaoService')
+    router.get('/automacao/List', automacaoService.List)
+    router.get('/automacao/getOne', automacaoService.getOne)
+    router.post('/automacao/create', automacaoService.create)
+    router.post('/automacao/update', automacaoService.update)
+    router.post('/automacao/delete', automacaoService.delete)
+
+    const integracaoService = require('../api/integracao/integracaoService')
+    router.get('/integracao/List', integracaoService.List)
+    router.get('/integracao/getOne', integracaoService.getOne)
+    router.post('/integracao/create', integracaoService.create)
+    router.post('/integracao/update', integracaoService.update)
+    router.post('/integracao/delete', integracaoService.delete)
+
 //}
 //}
 

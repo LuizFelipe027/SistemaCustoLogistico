@@ -6,11 +6,11 @@ angular.module('sistemaCustoLogistico').config([
     //'$httpProvider'
     function($stateProvider, $urlRouterProvider, $httpProvider) {
         $stateProvider.state('dashboard', {url: "/dashboard",templateUrl: "dashboard/dashboard.html"})
-                      .state('usuario', {url: "/usuario", templateUrl: "usuario/usuario.html"})
+                      .state('usuario', {url: "/usuario", templateUrl: "usuario/tabs.html"})
 
         //$httpProvider.interceptors.push('handleResponseError')
 
-        $urlRouterProvider.otherwise('/dashboard')
+        //$urlRouterProvider.otherwise('/dashboard')
     }
 ]) 
 })()

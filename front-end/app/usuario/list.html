@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<div class="box-body">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Senha</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="usuario in usuarios">
+        <td>{{ usuario.NOME}}</td>
+        <td>{{ usuario.EMAIL }}</td>
+        <td>{{ usuario.SENHA }}</td>
+        <td class="table-actions">
+          <button class="btn btn-warning" ng-click="showTabUpdate(usuario)">
+            <i class="fa fa-pencil"></i></button>
+          <button class="btn btn-danger" ng-click="showTabDelete(usuario)">
+            <i class="fa fa-trash-o"></i></button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="box-footer clearfix">
+    <paginator url="/#!/usuarios" pages="{{ pages }}"></paginator>
+  </div>
+</div>

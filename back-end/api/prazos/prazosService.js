@@ -12,7 +12,7 @@ module.exports = {
 
     async create(req, res){
         try {
-            console.log('entrou aqui ');
+             
             const Prazos = await PrazosModel.create({
                 NUMERO_NOTA: req.body.NUMERO_NOTA,
                 DT_ENTREGA_EFETIVA: req.body.DT_ENTREGA_EFETIVA,

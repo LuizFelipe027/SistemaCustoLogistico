@@ -12,7 +12,7 @@ module.exports = {
 
     async create(req, res){
         try {
-            console.log('entrou aqui ');
+             
             const scoreLucro = await scoreLucroModel.create({
                 NUMERO_NOTA: req.body.NUMERO_NOTA,
                 VALOR_BRUTO: req.body.VALOR_BRUTO,

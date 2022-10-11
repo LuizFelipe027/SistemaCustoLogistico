@@ -12,7 +12,7 @@ module.exports = {
 
     async create(req, res){
         try {
-            console.log('entrou aqui ');
+             
             const ItensFaltando = await ItensFaltandoModel.create({
                 NUMERO_NOTA: req.body.NUMERO_NOTA,
                 SE_FALTANTE: req.body.SE_FALTANTE,

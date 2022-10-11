@@ -12,7 +12,7 @@ module.exports = {
 
     async create(req, res){
         try {
-            console.log('entrou aqui ');
+             
             const Satisfacao = await SatisfacaoModel.create({
                 NUMERO_NOTA: req.body.NUMERO_NOTA,
                 NUMERO_SATISFACAO: req.body.NUMERO_SATISFACAO,

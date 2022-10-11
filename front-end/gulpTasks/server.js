@@ -20,7 +20,7 @@ function initServiceDebug() {
     //   port: 35730
     // },
     livereload: true,
-    port: 3002,
+    port: 2222,
     host: '0.0.0.0'
   }))
 }

@@ -1,5 +1,5 @@
 (function(){
-    angular.module('conecta-supply').factory('tabs', [ function() {
+    angular.module('sistemaCustoLogistico').factory('tabs', [ function() {
   
        function show(owner, {
           tabList = false,

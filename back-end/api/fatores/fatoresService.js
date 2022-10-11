@@ -12,13 +12,12 @@ module.exports = {
 
     async create(req, res){
         try {
-            console.log('entrou aqui ');
             const fatores = await fatoresModel.create({
-                ID: req.body.ID,
-                CONDICAO: req.body.CONDICAO,
-                VLR_FATURAMENTO: req.body.VLR_FATURAMENTO,
-                CONDICAO_PERFATURAMENTO: req.body.CONDICAO_PERFATURAMENTO,
-				SCORE_LUCRO: req.body.SCORE_LUCRO
+                ID: req.body.id,
+                CONDICAO: req.body.condicao,
+                VLR_FATURAMENTO: req.body.vlr_faturamento,
+                CONDICAO_PERFATURAMENTO: req.body.condicao_perfaturamento,
+				SCORE_LUCRO: req.body.score_lucro
             })
 			
             return res.json(fatores)
@@ -31,10 +30,10 @@ module.exports = {
         try {
             const fatores = await fatoresModel.findByPk(req.body.ID)
             if(fatores){
-                fatores.CONDICAO = req.body.CONDICAO || fatores.CONDICAO
-                fatores.VLR_FATURAMENTO = req.body.VLR_FATURAMENTO || fatores.VLR_FATURAMENTO
-                fatores.CONDICAO_PERFATURAMENTO = req.body.CONDICAO_PERFATURAMENTO || fatores.CONDICAO_PERFATURAMENTO
-				fatores.SCORE_LUCRO = req.body.SCORE_LUCRO || fatores.SCORE_LUCRO
+                fatores.CONDICAO = req.body.condicao || fatores.CONDICAO
+                fatores.VLR_FATURAMENTO = req.body.vlr_faturamento || fatores.VLR_FATURAMENTO
+                fatores.CONDICAO_PERFATURAMENTO = req.body.condicao_perfaturamento || fatores.CONDICAO_PERFATURAMENTO
+				fatores.SCORE_LUCRO = req.body.score_lucro || fatores.SCORE_LUCRO
                 await fatores.save()
             }
             return res.json(fatores)
@@ -45,7 +44,7 @@ module.exports = {
 
     async getOne(req, res){
         try {
-            const fatores = await fatoresModel.findByPk(req.body.ID)
+            const fatores = await fatoresModel.findByPk(req.body.id)
             return res.json(fatores)
         } catch (error) {
             return console.error("ERROR GETONE: ", error);
@@ -54,7 +53,7 @@ module.exports = {
 
     async delete(req, res){
         try {
-            const fatores = await fatoresModel.findByPk(req.body.ID)
+            const fatores = await fatoresModel.findByPk(req.body.id)
             await fatores.destroy()
             return res.json(fatores)
         } catch (error) {

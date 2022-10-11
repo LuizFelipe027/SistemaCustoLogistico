@@ -1,6 +1,5 @@
 (function(){
     angular.module('sistemaCustoLogistico').controller('DashboardCtrl', [
-      '$scope',
       '$http',
       'msgs',
       'tabs',
@@ -10,8 +9,9 @@
       DashboardController
     ])
   
-    function DashboardController($scope,$http, msgs, tabs, consts, urls,formatField) {
-  
+    function DashboardController($http, msgs, tabs, consts, urls,formatField) {
+      const $scope = this
+
       //declara variavel principal
       $scope.dashboard = {}
       //$scope.tabDashboard = true

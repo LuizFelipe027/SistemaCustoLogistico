@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development gulp",
     "sandbox": "NODE_ENV=sandbox gulp",
-    "production": "NODE_ENV=production pm2 start node_modules/gulp/bin/gulp.js --name conecta-supply-front"
+    "production": "NODE_ENV=production pm2 start node_modules/gulp/bin/gulp.js --name sistemaCustoLogistico"
   },
   "keywords": [],
   "author": "",
