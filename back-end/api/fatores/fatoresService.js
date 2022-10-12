@@ -28,7 +28,7 @@ module.exports = {
 
     async update(req, res){
         try {
-            const fatores = await fatoresModel.findByPk(req.body.ID)
+            const fatores = await fatoresModel.findByPk(req.params.ID)
             if(fatores){
                 fatores.CONDICAO = req.body.condicao || fatores.CONDICAO
                 fatores.VLR_FATURAMENTO = req.body.vlr_faturamento || fatores.VLR_FATURAMENTO
@@ -44,7 +44,7 @@ module.exports = {
 
     async getOne(req, res){
         try {
-            const fatores = await fatoresModel.findByPk(req.body.id)
+            const fatores = await fatoresModel.findByPk(req.params.ID)
             return res.json(fatores)
         } catch (error) {
             return console.error("ERROR GETONE: ", error);
@@ -53,7 +53,7 @@ module.exports = {
 
     async delete(req, res){
         try {
-            const fatores = await fatoresModel.findByPk(req.body.id)
+            const fatores = await fatoresModel.findByPk(req.params.ID)
             await fatores.destroy()
             return res.json(fatores)
         } catch (error) {

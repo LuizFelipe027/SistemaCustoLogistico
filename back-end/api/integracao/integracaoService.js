@@ -35,7 +35,7 @@ module.exports = {
 
     async update(req, res){
         try {
-            const integracao = await integracaoModel.findByPk(req.body.id)
+            const integracao = await integracaoModel.findByPk(req.params.ID)
             if(integracao){
                 integracao.LAYOUT = req.body.layout || integracao.LAYOUT
                 integracao.TIPO = req.body.tipo || integracao.TIPO
@@ -59,7 +59,7 @@ module.exports = {
 
     async getOne(req, res){
         try {
-            const integracao = await integracaoModel.findByPk(req.body.id)
+            const integracao = await integracaoModel.findByPk(req.params.ID)
             return res.json(integracao)
         } catch (error) {
             return console.error("ERROR GETONE: ", error);
@@ -68,7 +68,7 @@ module.exports = {
 
     async delete(req, res){
         try {
-            const integracao = await integracaoModel.findByPk(req.body.id)
+            const integracao = await integracaoModel.findByPk(req.params.ID)
             await integracao.destroy()
             return res.json(integracao)
         } catch (error) {

@@ -10,7 +10,7 @@ html {
 }
 
 #toast-container {
-  top:20px;
+  top:70px;
 }
 
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
@@ -45,4 +45,8 @@ html {
 
 .table-item tr.false {
   background: #fff;
+}
+
+.table-actions { 
+  width: 140px;
 }

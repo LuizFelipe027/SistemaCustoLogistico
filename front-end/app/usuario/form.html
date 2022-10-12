@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <div role="form">
   <div class="box-body">
-    <field id="name"  label="Nome: "   grid="12 6 4" model="usuario.nome"></field>
-    <field id="email" label="E-mail: " grid="12 6 4" model="usuario.email"></field>
-    <field id="senha" label="Senha: "  grid="12 6 4" model="usuario.senha" type="password"></field>
+    <field readonly="tabDelete" id="name"  label="Nome: "   grid="12 6 4" model="usuario.NOME"></field>
+    <field readonly="tabDelete" id="email" label="E-mail: " grid="12 6 4" model="usuario.EMAIL"></field>
+    <field readonly="tabDelete" id="senha" label="Senha: "  grid="12 6 4" model="usuario.SENHA" type="password"></field>
   </div>
     
   <div class="box-footer">
-    <button class="btn btn-primary" ng-click="create()">Incluir</button>
-    <button class="btn btn-info">Alterar</button>
-    <button class="btn btn-danger">Excluir</button>
-    <button class="btn btn-default">Cancelar</button>
+    <button ng-if="tabCreate" class="btn btn-primary" ng-click="createUsuario()">Incluir</button>
+    <button ng-if="tabUpdate" class="btn btn-info" ng-click="updateUsuario()">Alterar</button>
+    <button ng-if="tabDelete" class="btn btn-danger" ng-click="deleteUsuario()">Excluir</button>
+    <button class="btn btn-default" ng-click="cancel()">Cancelar</button>
   </div>
 </div>

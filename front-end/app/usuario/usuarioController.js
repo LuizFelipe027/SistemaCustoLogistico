@@ -3,39 +3,87 @@
     '$scope',
     '$http',
     //'$location',
-    //'msgs',
-    //'tabs',
+    'msgs',
+    'tabs',
     usuarioController
   ])
 
-  function usuarioController($scope, $http) {
+  function usuarioController($scope, $http, msgs, tabs) {
+    const urlPadrao = 'http://localhost:5000'
 
-    $scope.getUsuarios = function() {
+    $scope.getUsuarios = function () {
       //const url = `${urls.apiUrl}/usuario?skip=${skip}&limit=${limit}&filter=${$scope.filter}`
-      const url = 'http://localhost:5000/usuario/List'
-      $http.get(url).then(function(resp) {
-        
+      const url = `${urlPadrao}/usuario/List`
+      $http.get(url).then(function (resp) {
         $scope.usuarios = resp.data
-        console.log($scope.usuarios)
         $scope.usuario = {}
-        //tabs.show($scope, {tabList: true})
+        tabs.show($scope, { tabList: true, tabCreate: true })
+      }).catch(function (error) {
+        msgs.addError(error)
+      })
+    }
+
+    $scope.createUsuario = function () {
+      const url = `${urlPadrao}/usuario/create`
+      $http.post(url, $scope.usuario).then(function (response) {
+        $scope.usuario = {}
+        $scope.getUsuarios()
+        msgs.addSuccess('Operação realizada com sucesso!')
+      }).catch(function (error) {
+        msgs.addError(error)
+      })
+    }
+
+    $scope.cancel = function() {
+      tabs.show($scope, { tabList: true, tabCreate: true })
+      $scope.usuario = {}
+    }
+
+    $scope.showTabUpdate = function (usuario) {
+      initUsuario(usuario)
+      tabs.show($scope, { tabUpdate: true })
+    }
+
+    $scope.updateUsuario = function() {
+      const url = `${urlPadrao}/usuario/update/${$scope.usuario.ID}`
+      $http.put(url, $scope.usuario).then(function(response) {
+        $scope.usuario = {}
+        $scope.getUsuarios()
+        tabs.show($scope, {tabList: true})
+        msgs.addSuccess('Operação realizada com sucesso!')
       }).catch(function(error) {
         msgs.addError(error)
       })
     }
 
-    $scope.create = function () {
-      const url = 'http://localhost:5000/usuario/create'
-      console.log($scope.usuario);
-      const usuario = {
-        nome: "LuizPaixao",
-        email: "lp@teste.com",
-        senha: "password1223" 
-      }
-      $http.post(url, usuario).success(function (response) {
-        $scope.usuario = {}
-        console.log('Funcionou');
+    $scope.showTabDelete = function (usuario) {
+      initUsuario(usuario)
+      tabs.show($scope, { tabDelete: true })
+    }
+
+    $scope.deleteUsuario = function() {
+      const url = `${urlPadrao}/usuario/delete/${$scope.usuario.ID}`
+      $http.delete(url, $scope.usuario).then(function(response) {
+         $scope.usuario = {}
+         $scope.getUsuarios()
+         tabs.show($scope, {tabList: true})
+         msgs.addSuccess('Operação realizada com sucesso!')
+      }).catch(function(error) {
+         msgs.addError(error)
       })
+    }
+
+    const initUsuario = function (usuario) {
+      if (usuario) {
+        const url = `${urlPadrao}/usuario/getOne/${usuario.ID}`
+        $http.get(url).then(function (resp) {
+          $scope.usuario = resp.data
+        }).catch(function (error) {
+          msgs.addError(error)
+        })
+      } else {
+        $scope.usuario = {}
+      }
     }
 
     $scope.getUsuarios()

@@ -32,7 +32,7 @@ module.exports = {
 
   async update(req, res) {
     try {
-      const automacao = await automacaoModel.findByPk(req.body.id)
+      const automacao = await automacaoModel.findByPk(req.params.ID)
       if (automacao) {
         automacao.NOME = req.body.nome || automacao.NOME
         automacao.PROX_EXECUCAO = req.body.prox_execucao || automacao.PROX_EXECUCAO
@@ -53,7 +53,7 @@ module.exports = {
 
   async getOne(req, res) {
     try {
-      const automacao = await automacaoModel.findByPk(req.body.id)
+      const automacao = await automacaoModel.findByPk(req.params.ID)
       return res.json(automacao)
     } catch (error) {
       return console.error("ERROR GETONE: ", error);
@@ -62,7 +62,7 @@ module.exports = {
 
   async delete(req, res) {
     try {
-      const automacao = await automacaoModel.findByPk(req.body.id)
+      const automacao = await automacaoModel.findByPk(req.params.ID)
       await automacao.destroy()
       return res.json(automacao)
     } catch (error) {

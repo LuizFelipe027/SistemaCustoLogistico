@@ -13,10 +13,10 @@ module.exports = {
     async create(req, res){
         try {
             const Usuarios = await usuarioModel.create({
-                ID: req.body.id,
-                NOME: req.body.nome,
-                SENHA: req.body.senha,
-                EMAIL: req.body.email
+                ID: req.body.ID,
+                NOME: req.body.NOME,
+                SENHA: req.body.SENHA,
+                EMAIL: req.body.EMAIL
             })
             return res.json(Usuarios)
         } catch (error) {
@@ -26,11 +26,11 @@ module.exports = {
 
     async update(req, res){
         try {
-            const usuario = await usuarioModel.findByPk(req.body.id)
+            const usuario = await usuarioModel.findByPk(req.params.ID)
             if(usuario){
-                usuario.NOME = req.body.nome || usuario.NOME
-                usuario.SENHA = req.body.senha || usuario.SENHA
-                usuario.EMAIL = req.body.email || usuario.EMAIL
+                usuario.NOME = req.body.NOME || usuario.NOME
+                usuario.SENHA = req.body.SENHA || usuario.SENHA
+                usuario.EMAIL = req.body.EMAIL || usuario.EMAIL
                 await usuario.save()
             }
             return res.json(usuario)
@@ -41,7 +41,8 @@ module.exports = {
 
     async getOne(req, res){
         try {
-            const usuario = await usuarioModel.findByPk(req.body.id)
+            console.log(req.params)
+            const usuario = await usuarioModel.findByPk(req.params.ID)
             return res.json(usuario)
         } catch (error) {
             return console.error("ERROR GETONE: ", error);
@@ -50,7 +51,7 @@ module.exports = {
 
     async delete(req, res){
         try {
-            const usuario = await usuarioModel.findByPk(req.body.id)
+            const usuario = await usuarioModel.findByPk(req.params.ID)
             await usuario.destroy()
             return res.json(usuario)
         } catch (error) {
