@@ -41,7 +41,6 @@ module.exports = {
 
     async getOne(req, res){
         try {
-            console.log(req.params)
             const usuario = await usuarioModel.findByPk(req.params.ID)
             return res.json(usuario)
         } catch (error) {
