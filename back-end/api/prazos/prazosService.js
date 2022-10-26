@@ -1,4 +1,4 @@
-const PrazosModel = require('./PrazosModel')
+const PrazosModel = require('../../models/PRAZOS')
 
 module.exports = {
     async List(req, res){

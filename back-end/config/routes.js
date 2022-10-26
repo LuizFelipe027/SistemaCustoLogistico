@@ -1,24 +1,22 @@
 const express = require('express')
 const auth = require('./auth')
 
-module.exports = function (server) {
+//module.exports = function (server) {
 
     //ROTAS ABERTAS
     
     //API rotas
     const openApi = express.Router()
-    server.use('/oapi', openApi)
+    //server.use('/oapi', openApi)
 
     const authService = require('../api/usuario/authService')
     openApi.post('/login', authService.login)
     openApi.post('/signup', authService.signup)
     openApi.post('/validateToken', authService.validateToken)
 
-    
     //API Routes
-    
     const protectedApi = express.Router()
-    server.use('/api', protectedApi)
+    //server.use('/api', protectedApi)
 
     protectedApi.use(auth)
 
@@ -58,20 +56,6 @@ module.exports = function (server) {
     protectedApi.put('/satisfacao/update/:ID', satisfacaoService.update)
     protectedApi.delete('/satisfacao/delete/:ID', satisfacaoService.delete)
 
-    const itensFaltandoService = require('../api/itensFaltando/itensFaltandoService')
-    protectedApi.get('/itensfaltando/List', itensFaltandoService.List)
-    protectedApi.get('/itensfaltando/getOne/:ID', itensFaltandoService.getOne)
-    protectedApi.post('/itensfaltando/create', itensFaltandoService.create)
-    protectedApi.put('/itensfaltando/update/:ID', itensFaltandoService.update)
-    protectedApi.delete('/itensfaltando/delete/:ID', itensFaltandoService.delete)
-
-    const itensAvariadoService = require('../api/itensAvariado/itensAvariadoService')
-    protectedApi.get('/itensavariado/List', itensAvariadoService.List)
-    protectedApi.get('/itensavariado/getOne/:ID', itensAvariadoService.getOne)
-    protectedApi.post('/itensavariado/create', itensAvariadoService.create)
-    protectedApi.put('/itensavariado/update/:ID', itensAvariadoService.update)
-    protectedApi.delete('/itensavariado/delete/:ID', itensAvariadoService.delete)
-
     const prazosService = require('../api/prazos/prazosService')
     protectedApi.get('/prazos/List', prazosService.List)
     protectedApi.get('/prazos/getOne/:ID', prazosService.getOne)
@@ -93,7 +77,7 @@ module.exports = function (server) {
     protectedApi.put('/integracao/update/:ID', integracaoService.update)
     protectedApi.delete('/integracao/delete/:ID', integracaoService.delete)
 
-}
+//}
 
 
-//module.exports = router
+module.exports = {openApi, protectedApi}

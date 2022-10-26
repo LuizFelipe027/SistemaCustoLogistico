@@ -1,4 +1,4 @@
-const automacaoModel = require('./automacaoModel')
+//const automacaoModel = require('../../models/automacaoModel')
 
 module.exports = {
   async List(req, res) {
