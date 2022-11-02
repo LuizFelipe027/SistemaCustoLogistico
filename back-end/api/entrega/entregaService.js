@@ -1,4 +1,4 @@
-const entregaModel = require('../../models/ENTREGA')
+const entregaModel = require('./entregaModel')
 
 module.exports = {
     async List(req, res){

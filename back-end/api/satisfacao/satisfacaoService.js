@@ -1,4 +1,4 @@
-const SatisfacaoModel = require('../../models/SATISFACAO')
+const SatisfacaoModel = require('./satisfacaoModel')
 
 module.exports = {
     async List(req, res){

@@ -1,4 +1,4 @@
-const usuarioModel = require('../../models/USUARIOS')
+const usuarioModel = require('./usuarioModel')
 
 module.exports = {
     async List(req, res){
@@ -13,7 +13,7 @@ module.exports = {
     async create(req, res){
         try {
             const Usuarios = await usuarioModel.create({
-                ID: req.body.ID,
+                ID: req.body.IDUSUARIO,
                 NOME: req.body.NOME,
                 SENHA: req.body.SENHA,
                 EMAIL: req.body.EMAIL

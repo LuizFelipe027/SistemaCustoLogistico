@@ -45,7 +45,7 @@
     }
 
     $scope.updateUsuario = function() {
-      const url = `${urlPadrao}/usuario/update/${$scope.usuario.ID}`
+      const url = `${urlPadrao}/usuario/update/${$scope.usuario.IDUSUARIO}`
       $http.put(url, $scope.usuario).then(function(response) {
         $scope.usuario = {}
         $scope.getUsuarios()
@@ -62,7 +62,7 @@
     }
 
     $scope.deleteUsuario = function() {
-      const url = `${urlPadrao}/usuario/delete/${$scope.usuario.ID}`
+      const url = `${urlPadrao}/usuario/delete/${$scope.usuario.IDUSUARIO}`
       $http.delete(url, $scope.usuario).then(function(response) {
          $scope.usuario = {}
          $scope.getUsuarios()
@@ -75,7 +75,7 @@
 
     const initUsuario = function (usuario) {
       if (usuario) {
-        const url = `${urlPadrao}/usuario/getOne/${usuario.ID}`
+        const url = `${urlPadrao}/usuario/getOne/${usuario.IDUSUARIO}`
         $http.get(url).then(function (resp) {
           $scope.usuario = resp.data
         }).catch(function (error) {

@@ -27,11 +27,11 @@ const express = require('express')
     router.delete('/scorelucro/delete/:ID', scoreLucroService.delete)
 
     const fatoresService = require('../api/fatores/fatoresService')
-    router.get('/scorelucro/List', fatoresService.List)
-    router.get('/scorelucro/getOne/:ID', fatoresService.getOne)
-    router.post('/scorelucro/create', fatoresService.create)
-    router.put('/scorelucro/update/:ID', fatoresService.update)
-    router.delete('/scorelucro/delete/:ID', fatoresService.delete)
+    router.get('/fatores/List', fatoresService.List)
+    router.get('/fatores/getOne/:ID', fatoresService.getOne)
+    router.post('/fatores/create', fatoresService.create)
+    router.put('/fatores/update/:ID', fatoresService.update)
+    router.delete('/fatores/delete/:ID', fatoresService.delete)
 
     const satisfacaoService = require('../api/satisfacao/satisfacaoService')
     router.get('/satisfacao/List', satisfacaoService.List)
@@ -40,26 +40,12 @@ const express = require('express')
     router.put('/satisfacao/update/:ID', satisfacaoService.update)
     router.delete('/satisfacao/delete/:ID', satisfacaoService.delete)
 
-    const itensFaltandoService = require('../api/itensFaltando/itensFaltandoService')
-    router.get('/itensfaltando/List', itensFaltandoService.List)
-    router.get('/itensfaltando/getOne/:ID', itensFaltandoService.getOne)
-    router.post('/itensfaltando/create', itensFaltandoService.create)
-    router.put('/itensfaltando/update/:ID', itensFaltandoService.update)
-    router.delete('/itensfaltando/delete/:ID', itensFaltandoService.delete)
-
-    const itensAvariadoService = require('../api/itensAvariado/itensAvariadoService')
-    router.get('/itensavariado/List', itensAvariadoService.List)
-    router.get('/itensavariado/getOne/:ID', itensAvariadoService.getOne)
-    router.post('/itensavariado/create', itensAvariadoService.create)
-    router.put('/itensavariado/update/:ID', itensAvariadoService.update)
-    router.delete('/itensavariado/delete/:ID', itensAvariadoService.delete)
-
     const prazosService = require('../api/prazos/prazosService')
     router.get('/prazos/List', prazosService.List)
     router.get('/prazos/getOne/:ID', prazosService.getOne)
-    router.post('/prazos/create', prazosService.create)
-    router.put('/prazos/update/:ID', prazosService.update)
-    router.delete('/prazos/delete/:ID', prazosService.delete)
+    // router.post('/prazos/create', prazosService.create)
+    // router.put('/prazos/update/:ID', prazosService.update)
+    // router.delete('/prazos/delete/:ID', prazosService.delete)
 
     const automacaoService = require('../api/automacao/automacaoService')
     router.get('/automacao/List', automacaoService.List)
@@ -75,7 +61,20 @@ const express = require('express')
     router.put('/integracao/update/:ID', integracaoService.update)
     router.delete('/integracao/delete/:ID', integracaoService.delete)
 
+    const clienteService = require('../api/cliente/clienteService')
+    router.get('/cliente/List', clienteService.List)
+    router.get('/cliente/getOne/:ID', clienteService.getOne)
+    // router.post('/cliente/create', clienteService.create)
+    // router.put('/cliente/update/:ID', clienteService.update)
+    // router.delete('/cliente/delete/:ID', clienteService.delete)
+
+    const perfilService = require('../api/perfil/perfilService')
+    router.get('/perfil/List', perfilService.List)
+    router.get('/perfil/getOne/:ID', perfilService.getOne)
+    // router.post('/perfil/create', perfilService.create)
+    // router.put('/perfil/update/:ID', perfilService.update)
+    // router.delete('/perfil/delete/:ID', perfilService.delete)
 //}
 //}
 
-//module.exports = router
+module.exports = router

@@ -1,14 +1,18 @@
-const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('CLIENTE', {
+const sequelize = require('sequelize')
+const database = require('../../config/database')
+
+class CLIENTE extends sequelize.Model{}
+
+  CLIENTE.init(
+   {
     ID_CLIENTE: {
       autoIncrement: true,
-      type: DataTypes.INTEGER,
+      type: sequelize.INTEGER,
       allowNull: false,
       primaryKey: true
     },
     IDPERFIL: {
-      type: DataTypes.INTEGER,
+      type: sequelize.INTEGER,
       allowNull: false,
       references: {
         model: 'PERFIL',
@@ -16,19 +20,19 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     RAZAO_SOCIAL: {
-      type: DataTypes.STRING(1),
+      type: sequelize.STRING,
       allowNull: true
     },
     CPF_CNPJ: {
-      type: DataTypes.DECIMAL(14,0),
+      type: sequelize.DECIMAL(14,0),
       allowNull: true
     },
-    PERFIL: {
-      type: DataTypes.STRING(1),
-      allowNull: true
-    }
+    // PERFIL: {
+    //   type: sequelize.STRING,
+    //   allowNull: true
+    // }
   }, {
-    sequelize,
+    sequelize: database,
     tableName: 'CLIENTE',
     schema: 'dbo',
     timestamps: false,
@@ -48,4 +52,5 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
-};
+
+  module.exports = CLIENTE

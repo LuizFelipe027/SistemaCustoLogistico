@@ -1,10 +1,10 @@
-const PrazosModel = require('./prazosModel')
+const clienteModel = require('./clienteModel')
 
 module.exports = {
     async List(req, res){
         try {
-            const Prazos = await PrazosModel.findAll()
-            return res.json(Prazos)
+            const clientes = await clienteModel.findAll()
+            return res.json(clientes)
         } catch (error) {
             return console.error("ERROR: ", error);
         }
@@ -12,8 +12,8 @@ module.exports = {
 
     async getOne(req, res){
         try {
-            const Prazos = await PrazosModel.findByPk(req.body.NUMERO_NOTA)
-            return res.json(Prazos)
+            const cliente = await clienteModel.findByPk(req.params.ID)
+            return res.json(cliente)
         } catch (error) {
             return console.error("ERROR GETONE: ", error);
         }
