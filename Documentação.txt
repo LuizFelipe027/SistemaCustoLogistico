@@ -15,8 +15,15 @@ No link fazer o download do nvm-setup.zip, extrair e executar o arquivo
 Tutorial: https://www.youtube.com/watch?v=Zrq8reSxfUU&ab_channel=Al%C3%A9mdoC%C3%B3digo
 
 ============================================================================================
+Usar o sequelize com um banco já existente 
+
+link: https://github.com/sequelize/sequelize-auto
 
 
+comando no cmd dentro da pasta do projeto:
+ D:\SistemaCustoLogistico\back-end\node_modules\.bin\sequelize-auto sequelize-auto -o "./models" -d sistemaCustoLogistico -h mysqlserver-scl.database.windows.net -u azureuser -p 1433 -x databaseTCC027 -e mssql
+
+============================================================================================
 ERROS: 
 Error: File not found with singular glob: D:/SistemaCustoLogistico/node_modules/xlsx/dist/xlsx.full.min.js (if this was purposeful, use `allowEmpty` option)
 Correção: Foi adicionado o gulp.scr(['/caminho/'], { allowEmpty: true })

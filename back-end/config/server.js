@@ -1,5 +1,4 @@
-const environment = require('./environment')
-const port = environment.server.port
+const port = 5000
 const routes = require('./routes');
 
 const bodyParser = require('body-parser')
@@ -14,7 +13,8 @@ server.use(express.json({limit: '50mb'}))
 server.use(bodyParser.urlencoded({extended: true}))
 server.use(bodyParser.json())
 server.use(allowCors)
-server.use(routes)
+server.use(routes.openApi)
+server.use(routes.protectedApi)
 
 server.listen(port, function(){
   console.log(`BACKEND is running on port ${port}.`)

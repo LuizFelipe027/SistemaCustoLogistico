@@ -1,4 +1,4 @@
-const integracaoModel = require('./integracaoModel')
+//const integracaoModel = require('../../models/./integracaoModel')
 
 module.exports = {
     async List(req, res){
