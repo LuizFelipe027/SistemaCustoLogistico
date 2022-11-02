@@ -1,4 +1,4 @@
-const scoreLucroModel = require('../../models/SCORE_LUCRO')
+const scoreLucroModel = require('./scoreLucroModel')
 
 module.exports = {
     async List(req, res){

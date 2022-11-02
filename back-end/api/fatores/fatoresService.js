@@ -1,4 +1,4 @@
-const fatoresModel = require('../../models/FATORES')
+const fatoresModel = require('./fatoresModel')
 
 module.exports = {
     async List(req, res){
