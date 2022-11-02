@@ -1,83 +1,81 @@
 const express = require('express')
-const auth = require('./auth')
 
 //module.exports = function (server) {
-
-    //ROTAS ABERTAS
-    
     //API rotas
-    const openApi = express.Router()
-    //server.use('/oapi', openApi)
+    const router = express.Router()
+    //server.use('/api', router)
 
-    const authService = require('../api/usuario/authService')
-    openApi.post('/login', authService.login)
-    openApi.post('/signup', authService.signup)
-    openApi.post('/validateToken', authService.validateToken)
-
-    //API Routes
-    const protectedApi = express.Router()
-    //server.use('/api', protectedApi)
-
-    protectedApi.use(auth)
-
-    //Rotas de API
     const usuarioService = require('../api/usuario/usuarioService')
-    protectedApi.get('/usuario/List', usuarioService.List)
-    protectedApi.get('/usuario/getOne/:ID', usuarioService.getOne)
-    protectedApi.post('/usuario/create', usuarioService.create)
-    protectedApi.put('/usuario/update/:ID', usuarioService.update)
-    protectedApi.delete('/usuario/delete/:ID', usuarioService.delete)
+    router.get('/usuario/List', usuarioService.List)
+    router.get('/usuario/getOne/:ID', usuarioService.getOne)
+    router.post('/usuario/create', usuarioService.create)
+    router.put('/usuario/update/:ID', usuarioService.update)
+    router.delete('/usuario/delete/:ID', usuarioService.delete)
 
     const entregaService = require('../api/entrega/entregaService')
-    protectedApi.get('/entrega/List', entregaService.List)
-    protectedApi.get('/entrega/getOne/:ID', entregaService.getOne)
-    protectedApi.post('/entrega/create', entregaService.create)
-    protectedApi.put('/entrega/update/:ID', entregaService.update)
-    protectedApi.delete('/entrega/delete/:ID', entregaService.delete)
+    router.get('/entrega/List', entregaService.List)
+    router.get('/entrega/getOne/:ID', entregaService.getOne)
+    router.post('/entrega/create', entregaService.create)
+    router.put('/entrega/update/:ID', entregaService.update)
+    router.delete('/entrega/delete/:ID', entregaService.delete)
 
     const scoreLucroService = require('../api/scoreLucro/scoreLucroService')
-    protectedApi.get('/scorelucro/List', scoreLucroService.List)
-    protectedApi.get('/scorelucro/getOne/:ID', scoreLucroService.getOne)
-    protectedApi.post('/scorelucro/create', scoreLucroService.create)
-    protectedApi.put('/scorelucro/update/:ID', scoreLucroService.update)
-    protectedApi.delete('/scorelucro/delete/:ID', scoreLucroService.delete)
+    router.get('/scorelucro/List', scoreLucroService.List)
+    router.get('/scorelucro/getOne/:ID', scoreLucroService.getOne)
+    router.post('/scorelucro/create', scoreLucroService.create)
+    router.put('/scorelucro/update/:ID', scoreLucroService.update)
+    router.delete('/scorelucro/delete/:ID', scoreLucroService.delete)
 
     const fatoresService = require('../api/fatores/fatoresService')
-    protectedApi.get('/scorelucro/List', fatoresService.List)
-    protectedApi.get('/scorelucro/getOne/:ID', fatoresService.getOne)
-    protectedApi.post('/scorelucro/create', fatoresService.create)
-    protectedApi.put('/scorelucro/update/:ID', fatoresService.update)
-    protectedApi.delete('/scorelucro/delete/:ID', fatoresService.delete)
+    router.get('/scorelucro/List', fatoresService.List)
+    router.get('/scorelucro/getOne/:ID', fatoresService.getOne)
+    router.post('/scorelucro/create', fatoresService.create)
+    router.put('/scorelucro/update/:ID', fatoresService.update)
+    router.delete('/scorelucro/delete/:ID', fatoresService.delete)
 
     const satisfacaoService = require('../api/satisfacao/satisfacaoService')
-    protectedApi.get('/satisfacao/List', satisfacaoService.List)
-    protectedApi.get('/satisfacao/getOne/:ID', satisfacaoService.getOne)
-    protectedApi.post('/satisfacao/create', satisfacaoService.create)
-    protectedApi.put('/satisfacao/update/:ID', satisfacaoService.update)
-    protectedApi.delete('/satisfacao/delete/:ID', satisfacaoService.delete)
+    router.get('/satisfacao/List', satisfacaoService.List)
+    router.get('/satisfacao/getOne/:ID', satisfacaoService.getOne)
+    router.post('/satisfacao/create', satisfacaoService.create)
+    router.put('/satisfacao/update/:ID', satisfacaoService.update)
+    router.delete('/satisfacao/delete/:ID', satisfacaoService.delete)
+
+    const itensFaltandoService = require('../api/itensFaltando/itensFaltandoService')
+    router.get('/itensfaltando/List', itensFaltandoService.List)
+    router.get('/itensfaltando/getOne/:ID', itensFaltandoService.getOne)
+    router.post('/itensfaltando/create', itensFaltandoService.create)
+    router.put('/itensfaltando/update/:ID', itensFaltandoService.update)
+    router.delete('/itensfaltando/delete/:ID', itensFaltandoService.delete)
+
+    const itensAvariadoService = require('../api/itensAvariado/itensAvariadoService')
+    router.get('/itensavariado/List', itensAvariadoService.List)
+    router.get('/itensavariado/getOne/:ID', itensAvariadoService.getOne)
+    router.post('/itensavariado/create', itensAvariadoService.create)
+    router.put('/itensavariado/update/:ID', itensAvariadoService.update)
+    router.delete('/itensavariado/delete/:ID', itensAvariadoService.delete)
 
     const prazosService = require('../api/prazos/prazosService')
-    protectedApi.get('/prazos/List', prazosService.List)
-    protectedApi.get('/prazos/getOne/:ID', prazosService.getOne)
-    protectedApi.post('/prazos/create', prazosService.create)
-    protectedApi.put('/prazos/update/:ID', prazosService.update)
-    protectedApi.delete('/prazos/delete/:ID', prazosService.delete)
+    router.get('/prazos/List', prazosService.List)
+    router.get('/prazos/getOne/:ID', prazosService.getOne)
+    router.post('/prazos/create', prazosService.create)
+    router.put('/prazos/update/:ID', prazosService.update)
+    router.delete('/prazos/delete/:ID', prazosService.delete)
 
     const automacaoService = require('../api/automacao/automacaoService')
-    protectedApi.get('/automacao/List', automacaoService.List)
-    protectedApi.get('/automacao/getOne/:ID', automacaoService.getOne)
-    protectedApi.post('/automacao/create', automacaoService.create)
-    protectedApi.put('/automacao/update/:ID', automacaoService.update)
-    protectedApi.delete('/automacao/delete/:ID', automacaoService.delete)
+    router.get('/automacao/List', automacaoService.List)
+    router.get('/automacao/getOne/:ID', automacaoService.getOne)
+    router.post('/automacao/create', automacaoService.create)
+    router.put('/automacao/update/:ID', automacaoService.update)
+    router.delete('/automacao/delete/:ID', automacaoService.delete)
 
     const integracaoService = require('../api/integracao/integracaoService')
-    protectedApi.get('/integracao/List', integracaoService.List)
-    protectedApi.get('/integracao/getOne/:ID', integracaoService.getOne)
-    protectedApi.post('/integracao/create', integracaoService.create)
-    protectedApi.put('/integracao/update/:ID', integracaoService.update)
-    protectedApi.delete('/integracao/delete/:ID', integracaoService.delete)
+    router.get('/integracao/List', integracaoService.List)
+    router.get('/integracao/getOne/:ID', integracaoService.getOne)
+    router.post('/integracao/create', integracaoService.create)
+    router.put('/integracao/update/:ID', integracaoService.update)
+    router.delete('/integracao/delete/:ID', integracaoService.delete)
 
 //}
+//}
 
-
-module.exports = {openApi, protectedApi}
+//module.exports = router
