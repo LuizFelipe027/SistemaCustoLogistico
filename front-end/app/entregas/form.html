@@ -1,0 +1,221 @@
+<div role="form">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="input-group margin pull-right">
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="margin pull-right">
+        <button class="btn btn-info btn-sm"
+                ng-click="search('grupoeconomico')"
+                ng-if="tabCreate||tabExport"
+        >Grupo Econômico
+        </button>
+        <button class="btn btn-info btn-sm"
+                ng-click="search('cep')"
+                ng-if="tabUpdate&&!pedido.cliente.codigoErp"
+        >Consulta CEP
+        <button class="btn btn-success btn-sm"
+                ng-click="createPedido()"
+                ng-if="tabCreate"
+        >Incluir
+        </button>
+        <button class="btn btn-warning btn-sm"
+                ng-click="updatePedido()"
+                ng-if="tabUpdate"
+        >Alterar
+        </button>
+        <button class="btn btn-danger btn-sm"
+                ng-click="deletePedido()"
+                ng-if="tabDelete"
+        >Excluir
+        </button>
+        <button class="btn btn-default btn-sm"
+                ng-click="cancel()"
+        >Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+      <li>
+        <a href data-target="#tabCliente" data-toggle="tab">
+          <i class="fa fa-bars"></i> Cliente
+        </a>
+      </li>
+      <li ng-class="{active: true}">
+        <a href data-target="#tabPedido" data-toggle="tab">
+          <i class="fa fa-shopping-cart"></i> Pedido
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane" id="tabCliente">
+        <div class="box-body">
+          <div class="row">
+            <field id="pedidoGrupoEconomico"
+                   label="Grupo Econômico"
+                   model="pedido.grupoeconomico.nome"
+                   grid="12 6 4"
+                   readonly="true"
+            ></field>
+            <field id="pedidoEmpresa"
+                   label="Empresa"
+                   model="pedido.empresa.fantasia"
+                   grid="12 6 4"
+                   readonly="true"
+            ></field>
+            <field id="clienteCodigoErp"
+                   label="Codigo Erp"
+                   model="pedido.cliente.codigoErp"
+                   grid="12 6 4"
+                   readonly="true"
+            ></field>
+            <field id="clienteNome" label="Nome" model="pedido.cliente.nome" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+            <field id="clienteEmail" label="Email" model="pedido.cliente.email" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+            <field id="clienteDDI" label="DDI" model="pedido.cliente.telefone.ddi" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+            <field id="clienteDDD" label="DDD" model="pedido.cliente.telefone.ddd" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+            <field id="clienteTelefone" label="Telefone" model="pedido.cliente.telefone.numero" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+            <combobox id="clienteDoc" label="Tp.Documento" model="pedido.cliente.documento.tipo" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp" options="cbTipoDoc"></combobox>
+            <field id="clienteNumDoc" label="Num.Documento" model="pedido.cliente.documento.numero" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+            <field id="clienteInsc" label="Insc.Estadual" model="pedido.cliente.inscricaoEstadual" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+            <field id="clienteEndereco" label="Endereço" model="pedido.cliente.endereco" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+            <field id="clienteComplemento" label="Complemento" model="pedido.cliente.complemento" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+            <field id="clienteReferencia" label="Referencia" model="pedido.cliente.referencia" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+            <field id="clienteNumero" label="Número" model="pedido.cliente.numero" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+            <field id="clienteBairro" label="Bairro" model="pedido.cliente.bairro" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+            <field id="clienteCep" label="Cep" model="pedido.cliente.cep" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+            <field id="clienteMunicio" label="Município" model="pedido.cliente.municipio.nome" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+            <field id="clienteMunicioCodigo" label="Código" model="pedido.cliente.municipio.codigo" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+            <field id="clienteDistrito" label="Distrito" model="pedido.cliente.municipio.distrito" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+            <field id="clienteEstado" label="Estado" model="pedido.cliente.estado.codigo" grid="12 6 4" readonly="tabView||tabDelete||pedido.cliente.codigoErp"></field>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane" id="tabPedido" ng-class="{active: true}">
+        <div class="box-body">
+          <div class="row">
+            <field id="pedidoGrupoEconomico"
+                   label="Grupo Econômico"
+                   model="pedido.grupoeconomico.nome"
+                   grid="12 6 4"
+                   readonly="true"
+            ></field>
+            <field id="pedidoEmpresa"
+                   label="Empresa"
+                   model="pedido.empresa.fantasia"
+                   grid="12 6 4"
+                   readonly="true"
+            ></field>
+            <field id="pedidoCodigoParceiro"
+                   label="Código Parceiro"
+                   model="pedido.codigoParceiro"
+                   grid="12 6 4"
+                   readonly="true"
+            ></field>
+            <field id="pedidoCodigoCanal"
+                   label="Código Canal"
+                   model="pedido.codigoCanal"
+                   grid="12 6 4"
+                   readonly="true"
+            ></field>
+            <field id="pedidoVendedor"
+                   label="Vendedor"
+                   model="pedido.vendedor.nome"
+                   grid="12 6 4"
+                   readonly="true"
+            ></field>
+            <field id="pedidoStatus"
+                   label="Status"
+                   model="cbStPedido[buscaIndex(cbStPedido,pedido.status)].nome"
+                   grid="12 6 4"
+                   readonly="true"
+            ></field>
+            <field id="pedidoData"
+                   label="Data"
+                   model="pedido.data"
+                   grid="12 6 4"
+                   readonly="true"
+                   mask='date'
+            ></field>
+            <field id="pedidoDataPagamento"
+                   label="Data Pagamento"
+                   model="pedido.dataPagamento"
+                   grid="12 6 4"
+                   readonly="true"
+                   mask='date'
+            ></field>
+            <field id="pedidoDataFaturamento"
+                   label="Data Faturamento"
+                   model="pedido.dataFaturamento"
+                   grid="12 6 4"
+                   readonly="true"
+                   mask='date'
+            ></field>
+            <field id="pedidoDataEnvio"
+                   label="Data Envio"
+                   model="pedido.dataEnvio"
+                   grid="12 6 4"
+                   readonly="true"
+                   mask='date'
+            ></field>
+            <field id="pedidoDataConclusao"
+                   label="Data Conclusão"
+                   model="pedido.dataConcluido"
+                   grid="12 6 4"
+                   readonly="true"
+                   mask='date'
+            ></field>
+            <field id="pedidoDataCancelamento"
+                   label="Data Cancelamento"
+                   model="pedido.dataCancelado"
+                   grid="12 6 4"
+                   readonly="true"
+                   mask='date'
+            ></field>
+            <field id="pedidoTotalProd" label="Vlr.Produtos" model="pedido.totalProduto" grid="12 6 4" readonly="true" mask="r$" ></field>
+            <field id="pedidoTotalJuros" label="Vlr.Frete" model="pedido.totalFrete" grid="12 6 4" readonly="true" mask="r$" ></field>
+            <field id="pedidoTotalPago" label="Vlr.Pago" model="pedido.totalPago" grid="12 6 4" readonly="true" mask="r$" ></field>
+            <field id="pedidoTotalTxVenda" label="Vlr.Taxa Venda" model="pedido.totalTaxaVenda" grid="12 6 4" readonly="true" mask="r$" ></field>
+            <field id="pedidoTotalJuros" label="Vlr.Juros" model="pedido.totalJuros" grid="12 6 4" readonly="true" mask="r$" ></field>
+            <field id="pedidoTotalDesconto" label="Vlr.Desconto" model="pedido.totalDesconto" grid="12 6 4" readonly="true" mask="r$" ></field>
+            <field id="pedidoTotal" label="Vlr.Total" model="pedido.total" grid="12 6 4" readonly="true" mask="r$" ></field>
+          </div>
+          <div class="row">
+            <div class="table-responsive" ng-repeat="anuncio in pedido.itens">
+              <table class="table table-bordered table-striped table-hover">
+                <thead>
+                <tr>
+                  <th class="text-center"
+                      colspan="6"
+                  >Anúncio: {{:: anuncio.codigoParceiro }}
+                  </th>
+                </tr>
+                <tr>
+                  <th style="width:1px; white-space:nowrap;">Código</th>
+                  <th style="width:1px; white-space:nowrap;">Código ERP</th>
+                  <th>Nome</th>
+                  <th style="width:1px; white-space:nowrap;">Qtd</th>
+                  <th style="width:1px; white-space:nowrap;">Vlr Unit</th>
+                  <th style="width:1px; white-space:nowrap;">Desconto</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="produto in anuncio.produtos">
+                  <td>{{:: produto.produto.codigo }}</td>
+                  <td>{{:: produto.produto.codigoErp }}</td>
+                  <td>{{:: produto.produto.nome }}</td>
+                  <td>{{:: produto.quantidade }}</td>
+                  <td>{{:: produto.valorUnitario.toFixed(2) }}</td>
+                  <td>{{:: produto.desconto.toFixed(2) }}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div role="form">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="margin pull-right">
+        <button class="btn bg-red btn-sm" ng-click="updateCanceled()">Alterar</button>
+        <button class="btn btn-default btn-sm" ng-click="cancel()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+  <div class="box-body">
+    <div class="row">
+      <field id="pedidoData" label="Data" model="formatDate(pedido.data)" grid="12 6 6" readonly="true"></field>
+      <field id="pedidoGrupoEconomico" label="Grupo Econômico" model="pedido.grupoeconomico.nome" grid="12 6 6" readonly="true"></field>
+      <field id="pedidoEmpresa" label="Empresa" model="pedido.empresa.fantasia" grid="12 6 6" readonly="true"></field>
+      <field id="pedidoParceiro" label="Parceiro" model="pedido.parceiro.conta" grid="12 6 6" readonly="true"></field>
+      <field id="pedidoCancelamentoData" label="Dt.Cancelado" model="pedido.cancelamento.dataCancelado" grid="12 6 6" mask='date'></field>
+      <field id="pedidoCancelamentoHora" label="Hr.Cancelado" model="pedido.cancelamento.horaCancelado" grid="12 6 6" mask='time'></field>
+    </div>
+  </div>
+</div>

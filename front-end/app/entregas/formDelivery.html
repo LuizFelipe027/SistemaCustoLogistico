@@ -1,0 +1,25 @@
+<div role="form">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="margin pull-right">
+        <button class="btn btn-warning btn-sm" ng-click="updateDelivery()">Alterar</button>
+        <button class="btn btn-default btn-sm" ng-click="cancel()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+  <div class="box-body">
+    <div class="row">
+      <field id="pedidoData" label="Data" model="formatDate(pedido.data)" grid="12 6 6" readonly="true"></field>
+      <field id="pedidoGrupoEconomico" label="Grupo Econômico" model="pedido.grupoeconomico.nome" grid="12 6 6" readonly="true"></field>
+      <field id="pedidoEmpresa" label="Empresa" model="pedido.empresa.fantasia" grid="12 6 6" readonly="true"></field>
+      <field id="pedidoParceiro" label="Parceiro" model="pedido.parceiro.conta" grid="12 6 6" readonly="true"></field>
+      <field id="pedidoRastreamentoCodigo" label="Rastreamento" model="pedido.rastreamento.codigo" grid="12 6 6"></field>
+      <field id="pedidoRastreamentoUrl" label="Url" model="pedido.rastreamento.url" grid="12 6 6"></field>
+      <field id="pedidoRastreamentoDataEnvio" label="Dt.Envio" model="pedido.rastreamento.dataEnvio" grid="12 6 6" mask='date'></field>
+      <field id="pedidoRastreamentoHoraEnvio" label="Hr.Envio" model="pedido.rastreamento.horaEnvio" grid="12 6 6" mask='time'></field>
+      <field id="pedidoRastreamentoPrevisaoEntrega" label="Prv.Entrega" model="pedido.rastreamento.dataPrevisaoEntrega" grid="12 6 6" mask='date'></field>
+      <field id="pedidoRastreamentoTransportadora" label="Transportadora" model="pedido.rastreamento.transportadora.nome" grid="12 6 6"></field>
+      <field id="pedidoRastreamentoTransportadoraCnpj" label="Cnpj" model="pedido.rastreamento.transportadora.documento.numero" grid="12 6 6" mask="cnpj"></field>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ angular.module('sistemaCustoLogistico').config([
     function($stateProvider, $urlRouterProvider, $httpProvider) {
         $stateProvider.state('dashboard', {url: "/dashboard",templateUrl: "dashboard/dashboard.html"})
                       .state('usuario', {url: "/usuario", templateUrl: "usuario/tabs.html"})
+                      .state('entregas', {url: "/entregas", templateUrl: "entregas/browse.html"})
 
         //$httpProvider.interceptors.push('handleResponseError')
 

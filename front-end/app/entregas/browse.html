@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<content-header name="Entregas"></content-header>
+<section class="content">
+  <div class="row" ng-controller="entregasCtrl">
+    <div class="col-xs-12">
+      <div class="box">
+        <!-- <div ng-if="(tabList && !tabLoading && !tabSearch)" ng-class="{active: tabList}"> -->
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="input-group input-group-sm margin pull-left">
+                <input type="text" class="form-control" ng-model="filter" ng-enter="filterBrowse(filter)">
+                <span class="input-group-btn">
+                  <button class="btn btn-info btn-flat btn-sm" ng-click="filterBrowse(filter)">Buscar!</button>
+                </span>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="input-group margin pull-right">
+                <button class="btn btn-default btn-sm" ng-click="showPrevPag()"><i class="fa fa-backward"></i></button>
+                {{ page }}
+                <button class="btn btn-default btn-sm" ng-click="showNextPag()"><i class="fa fa-forward"></i></button>
+              </div>
+              <div class="input-group margin pull-right">
+                <button class="btn btn-default btn-sm" ng-click="exportCompraIntegrado()"><i class="fa fa-file-excel-o"></i> Exportar</button>
+              </div>
+            </div>
+          </div>
+          <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+              <li ng-class="{active: true}">
+                <a href data-target="#tabFiltro" data-toggle="tab">
+                  Filtros
+                </a>
+              </li>
+              <li>
+                <a href data-target="#tabData" data-toggle="tab">
+                  Datas
+                </a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane" id="tabFiltro"  ng-class="{active: true}">
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-lg-3 col-xs-4">
+                      <div class="input-group input-group-sm margin">
+                        <input ng-model="filtro.grupoeconomico.nome" class="form-control" ng-readonly="true" placeholder="Grupo Econômico"/>
+                        <span class="input-group-btn">
+                          <button class="btn btn-info btn-flat btn-sm" ng-click="search('grupoeconomico')"><i class="fa fa-search"></i></button>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-4">
+                      <div class="input-group input-group-sm margin pull-left">
+                        <input ng-model="filtro.empresa.fantasia" class="form-control" ng-readonly="true" placeholder="Empresa"/>
+                        <span class="input-group-btn">
+                          <button class="btn btn-info btn-flat btn-sm" ng-click="search('empresa')"><i class="fa fa-search"></i></button>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-4">
+                      <div class="input-group input-group-sm margin pull-left">
+                        <input ng-model="filtro.parceiro.conta" class="form-control" ng-readonly="true" placeholder="Parceiro"/>
+                        <span class="input-group-btn">
+                          <button class="btn btn-info btn-flat btn-sm" ng-click="search('parceiro')"><i class="fa fa-search"></i></button>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-4">
+                      <div class="input-group input-group-sm margin pull-left">
+                        <input ng-model="filtro.vendedor.nome" class="form-control" ng-readonly="true" placeholder="Vendedor"/>
+                        <span class="input-group-btn">
+                          <button class="btn btn-info btn-flat btn-sm" ng-click="search('vendedor')"><i class="fa fa-search"></i></button>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-4">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Integrado Erp</label>
+                          <select ng-change="refreshPedido()" ng-model="filtro.integrado" name="filtro.integrado" id="filtro.integrado" class="form-control">
+                           <option ng-repeat="option in cbIntegradoAmbos" value="{{option.codigo}}">{{option.nome}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-4">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Doc.Enviado</label>
+                          <select ng-change="refreshPedido()" ng-model="filtro.documento" name="filtro.documento" id="filtro.documento" class="form-control">
+                           <option ng-repeat="option in cbIntegradoAmbos" value="{{option.codigo}}">{{option.nome}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-4">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Rastr.Enviado</label>
+                          <select ng-change="refreshPedido()" ng-model="filtro.rastreamento" name="filtro.rastreamento" id="filtro.rastreamento" class="form-control">
+                           <option ng-repeat="option in cbIntegradoAmbos" value="{{option.codigo}}">{{option.nome}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-xs-4">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Concl.Enviado</label>
+                          <select ng-change="refreshPedido()" ng-model="filtro.concluido" name="filtro.concluido" id="filtro.concluido" class="form-control">
+                           <option ng-repeat="option in cbIntegradoAmbos" value="{{option.codigo}}">{{option.nome}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tabData">
+                <div class="box-body">
+                  <div class="row">
+                    <div class="col-lg-2 col-xs-3">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Data de:</label>
+                          <div class="input-group-xs">
+                            <input type="date" ng-change="getPedidos()" ng-model="filtro.dataDe" id="filtro.dataDe" class="form-control" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-3">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Data Pagamento de:</label>
+                          <div class="input-group-xs">
+                            <input type="date" ng-change="getPedidos()" ng-model="filtro.dataPagamentoDe" id="filtro.dataPagamentoDe" class="form-control"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-3">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Data Faturamento de:</label>
+                          <div class="input-group-xs">
+                            <input type="date" ng-change="getPedidos()" ng-model="filtro.dataFaturamentoDe" id="filtro.dataFaturamentoDe" class="form-control"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-3">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Data Envio de:</label>
+                          <div class="input-group-xs">
+                            <input type="date" ng-change="getPedidos()" ng-model="filtro.dataEnvioDe" id="filtro.dataEnvioDe" class="form-control"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-3">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Data Conclusão de:</label>
+                          <div class="input-group-xs">
+                            <input type="date" ng-change="getPedidos()" ng-model="filtro.dataConcluidoDe" id="filtro.dataConcluidoDe" class="form-control"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-3">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Data Cancelamento de:</label>
+                          <div class="input-group-xs">
+                            <input type="date" ng-change="getPedidos()" ng-model="filtro.dataCanceladoDe" id="filtro.dataCanceladoDe" class="form-control"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-3">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Data até:</label>
+                          <div class="input-group-xs">
+                            <input type="date" ng-change="getPedidos()" ng-model="filtro.dataAte" id="filtro.dataAte" class="form-control"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-3">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Data Pagamento até:</label>
+                          <div class="input-group-xs">
+                            <input type="date" ng-change="getPedidos()" ng-model="filtro.dataPagamentoAte" id="filtro.dataPagamentoAte" class="form-control"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-3">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Data Faturamento até:</label>
+                          <div class="input-group-xs">
+                            <input type="date" ng-change="getPedidos()" ng-model="filtro.dataFaturamentoAte" id="filtro.dataFaturamentoAte" class="form-control"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-3">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Data Envio até:</label>
+                          <div class="input-group-xs">
+                            <input type="date" ng-change="getPedidos()" ng-model="filtro.dataEnvioAte" id="filtro.dataEnvioAte" class="form-control"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-3">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Data Conclusão até:</label>
+                          <div class="input-group-xs">
+                            <input type="date" ng-change="getPedidos()" ng-model="filtro.dataConcluidoAte" id="filtro.dataConcluidoAte" class="form-control"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-xs-3">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <label>Data Cancelamento até:</label>
+                          <div class="input-group-xs">
+                            <input type="date" ng-change="getPedidos()" ng-model="filtro.dataCanceladoAte" id="filtro.dataCanceladoAte" class="form-control"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box-body">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="table-responsive">
+                  <table class="table table-condensed">
+                    <thead>
+                      <tr>
+                        <th>Nota Fiscal</th>
+                        <th>Valor Bruto</th>
+                        <th>Cliente</th>
+                        <th>Documento (CNPJ/CPF)</th>
+                        <th>Perfil</th>
+                        <th>Data Entrega</th>
+                        <th style="text-align: center;">Score Total</th>
+                        <th>Ações</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="entrega in entregas">
+                        <td>{{:: entrega.NUMERO_NOTA}}</td>
+                        <td>R$ {{:: entrega.VALOR_BRUTO}}</td>
+                        <td>{{:: entrega.RAZAO_SOCIAL}}</td>
+                        <td>{{:: entrega.CPF_CNPJ}}</td>
+                        <td>{{:: entrega.PERFIL}}</td>
+                        <td>{{:: entrega.DT_ENTREGA}}</td>
+                        <td style="text-align: center;">{{:: entrega.SCORE_TOTAL}}</td>
+                        <td style="width:165px;">
+                          <button title="Visualizar" class="btn btn-info btn-sm" ng-click="showTabView(pedido)"><i class="fa fa-eye"></i></button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- </div> -->
+        <div class="tab-content">
+          <div class="tab-pane"
+              id="tabView"
+              ng-if="(tabView && !tabLoading && !tabSearch)"
+              ng-class="{active: tabView}"
+              ng-include="'pedido/form.html'">
+          </div>
+          <div class="tab-pane"
+              id="tabUpdate"
+              ng-if="(tabUpdate && !tabLoading && !tabSearch)"
+              ng-class="{active: tabUpdate}"
+              ng-include="'pedido/form.html'">
+          </div>
+          <div class="tab-pane"
+              id="tabInvoice"
+              ng-if="(tabInvoice && !tabLoading && !tabSearch)"
+              ng-class="{active: tabInvoice}"
+              ng-include="'pedido/formInvoice.html'">
+          </div>
+          <div class="tab-pane"
+              id="tabDelivery"
+              ng-if="(tabDelivery && !tabLoading && !tabSearch)"
+              ng-class="{active: tabDelivery}"
+              ng-include="'pedido/formDelivery.html'">
+          </div>
+          <div class="tab-pane"
+              id="tabConcluded"
+              ng-if="(tabConcluded && !tabLoading && !tabSearch)"
+              ng-class="{active: tabConcluded}"
+              ng-include="'pedido/formConcluded.html'">
+          </div>
+          <div class="tab-pane"
+              id="tabCanceled"
+              ng-if="(tabCanceled && !tabLoading && !tabSearch)"
+              ng-class="{active: tabCanceled}"
+              ng-include="'pedido/formCanceled.html'">
+          </div>
+          <div class="tab-pane"
+              id="tabLoading"
+              ng-if="tabLoading"
+              ng-class="{active: tabLoading}"
+              ng-include="'template/loading/loading.html'">
+          </div>
+          <div class="tab-pane"
+              id="tabSearch"
+              ng-if="tabSearch"
+              ng-class="{active: tabSearch}"
+              ng-include="typeSearch+'/'+'searchlist'+typeFormSearch+'.html'">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

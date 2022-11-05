@@ -6,7 +6,6 @@ class SCORE_LUCRO extends sequelize.Model { }
 SCORE_LUCRO.init(
   {
     NUMERO_NOTA: {
-      autoIncrement: true,
       type: sequelize.INTEGER,
       allowNull: false,
       primaryKey: true,

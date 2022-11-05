@@ -57,7 +57,7 @@ module.exports = {
 
     async getOne(req, res){
         try {
-            const scoreLucro = await scoreLucroModel.findByPk(req.body.NUMERO_NOTA)
+            const scoreLucro = await scoreLucroModel.findByPk(req.params.ID)
             return res.json(scoreLucro)
         } catch (error) {
             return console.error("ERROR GETONE: ", error);

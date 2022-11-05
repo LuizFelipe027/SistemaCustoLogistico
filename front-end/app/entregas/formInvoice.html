@@ -1,0 +1,25 @@
+<div role="form">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="margin pull-right">
+        <button class="btn bg-teal btn-sm" ng-click="updateInvoice()">Alterar</button>
+        <button class="btn btn-default btn-sm" ng-click="cancel()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+  <div class="box-body">
+    <div class="row">
+      <field id="pedidoData" label="Data" model="formatDate(pedido.data)" grid="12 6 6" readonly="true"></field>
+      <field id="pedidoGrupoEconomico" label="Grupo Econômico" model="pedido.grupoeconomico.nome" grid="12 6 6" readonly="true"></field>
+      <field id="pedidoEmpresa" label="Empresa" model="pedido.empresa.fantasia" grid="12 6 6" readonly="true"></field>
+      <field id="pedidoParceiro" label="Parceiro" model="pedido.parceiro.conta" grid="12 6 6" readonly="true"></field>
+      <field id="pedidoDocumentoNumero" label="Documento" model="pedido.documento.numero" grid="12 6 6"></field>
+      <field id="pedidoDocumentoSerie" label="Série" model="pedido.documento.serie" grid="12 6 6"></field>
+      <field id="pedidoDocumentoDataEmissao" label="Dt.Emissão" model="pedido.documento.dataEmissao" grid="12 6 6" mask='date'></field>
+      <field id="pedidoDocumentoHoraEmissao" label="Hr.Emissão" model="pedido.documento.horaEmissao" grid="12 6 6" mask='time'></field>
+      <field id="pedidoDocumentoCfop" label="Cfop" model="pedido.documento.cfop" grid="12 6 6"></field>
+      <field id="pedidoDocumentoChave" label="Chave" model="pedido.documento.chave" grid="12 6 6"></field>
+      <fieldarea id="pedidoDocumentoXml" label="Xml" model="pedido.documento.xml" grid="12 12 12" rows="20"></fieldarea>
+    </div>
+  </div>
+</div>

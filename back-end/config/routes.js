@@ -19,6 +19,8 @@ const express = require('express')
     router.put('/entrega/update/:ID', entregaService.update)
     router.delete('/entrega/delete/:ID', entregaService.delete)
 
+    router.get('/entrega/entregas', entregaService.entregas)
+
     const scoreLucroService = require('../api/scoreLucro/scoreLucroService')
     router.get('/scorelucro/List', scoreLucroService.List)
     router.get('/scorelucro/getOne/:ID', scoreLucroService.getOne)

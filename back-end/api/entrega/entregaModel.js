@@ -6,7 +6,6 @@ class ENTREGAS extends sequelize.Model { }
 ENTREGAS.init(
   {
     NUMERO_NOTA: {
-      autoIncrement: true,
       type: sequelize.INTEGER,
       allowNull: false,
       primaryKey: true,

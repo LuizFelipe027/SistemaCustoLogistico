@@ -1,3 +1,4 @@
+const { isNull } = require('lodash');
 const entregaModel = require('./entregaModel')
 
 module.exports = {
@@ -62,6 +63,29 @@ module.exports = {
             return res.json(entrega)
         } catch (error) {
             return console.error("ERROR DELETE: ", error);
+        }
+    },
+
+    async entregas(req, res){
+        try {
+            const cnpj = '13141'
+            const entregas = await entregaModel.sequelize.query(
+                `SELECT E.NUMERO_NOTA, SC.VALOR_BRUTO, C.RAZAO_SOCIAL, C.CPF_CNPJ, P.PERFIL, E.DT_ENTREGA, 
+                (E.SCORE_PRAZO + SC.SCORE_CALCULADO + S.SCORE_SATISFACAO + (CASE WHEN E.SE_FALTANTE = 'S' THEN 0 ELSE 2 END) + (CASE WHEN E.SE_AVARIADO = 'S' THEN 0 ELSE 2 END)) AS SCORE_TOTAL
+                FROM ENTREGA E
+                JOIN SCORE_LUCRO SC ON SC.NUMERO_NOTA = E.NUMERO_NOTA
+                JOIN SATISFACAO S ON S.NUMERO_NOTA = E.NUMERO_NOTA
+                JOIN CLIENTE C ON C.ID_CLIENTE = E.ID_CLIENTE
+                JOIN PERFIL P ON P.IDPERFIL = C.IDPERFIL
+                WHERE c.CPF_CNPJ LIKE ISNULL(${cnpj}, C.CPF_CNPJ)
+                `, {
+                type: entregaModel.sequelize.QueryTypes.SELECT
+            })
+
+            return res.json(entregas)
+            
+        } catch (error) {
+            console.log(error)
         }
     }
 }
